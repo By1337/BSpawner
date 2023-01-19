@@ -1,0 +1,15 @@
+name: BSpawner
+version: '${project.version}'
+main: org.by1337.bspawner.BSpawner
+api-version: 1.16
+authors: [ By1337 ]
+description: sp
+commands:
+  bspawner:
+    description: Standart Command
+    aliases: [spawner, bs]
+    usage: Usage /bspawner help
+permissions:
+  bs.*:
+    description: All cmd
+    default: op

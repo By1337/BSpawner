@@ -1,0 +1,451 @@
+
+tasks-slots: [19, 21, 23, 25]
+hide-tasks: true #если true то предметы будут скрыты
+locked-tasks-material: BARRIER
+
+get-spawner:
+  material: GOLDEN_PICKAXE
+  slot: 49
+  enchanted: true
+  display-name: '&aДобыть спавнер'
+  lore:
+    locked:
+      - '&cВыполните все задания'
+    unlocked:
+      - '&aНажмите чтобы добыть спавнер!'
+
+tasks:
+  type-bring-items:
+    1: #only num
+      info:
+        material: COARSE_DIRT
+        name: '&7Каменистая земля'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Гравий &6x960 &7Сдано: {brought-GRAVEL}'
+          - '&7 - Земля &6x960 &7Сдано: {brought-DIRT}'
+      GRAVEL: 960
+      DIRT: 960
+    2:
+      info:
+        material: OBSIDIAN
+        name: '&7Все виды обсидиана'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Обсидиан &6x640 &7Сдано: {brought-OBSIDIAN}'
+          - '&7 - Плачущий обсидиан &6x192 &7Сдано: {brought-CRYING_OBSIDIAN}'
+      OBSIDIAN: 640
+      CRYING_OBSIDIAN: 192
+    3:
+      info:
+        material: DIAMOND_SWORD
+        name: '&7Готов к пвп!'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Зачарованное золотое яблоко &6x1 &7Сдано: {brought-ENCHANTED_GOLDEN_APPLE}'
+          - '&7 - Койф &6x1 &7Сдано: {brought-CHAINMAIL_HELMET}'
+          - '&7 - Кольчуга &6x1 &7Сдано: {brought-CHAINMAIL_CHESTPLATE}'
+          - '&7 - Кольчужные поножи &6x1 &7Сдано: {brought-CHAINMAIL_LEGGINGS}'
+          - '&7 - Кольчужные ботинки &6x1 &7Сдано: {brought-CHAINMAIL_BOOTS}'
+
+      ENCHANTED_GOLDEN_APPLE: 1
+      CHAINMAIL_HELMET: 1
+      CHAINMAIL_CHESTPLATE: 1
+      CHAINMAIL_LEGGINGS: 1
+      CHAINMAIL_BOOTS: 1
+    4:
+      info:
+        material: DIAMOND_PICKAXE
+        name: '&7Шахтёр'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Алмаз &6x128 &7Сдано: {brought-DIAMOND}'
+          - '&7 - Золотой слиток &6x256 &7Сдано: {brought-GOLD_INGOT}'
+          - '&7 - Железный слиток &6x512 &7Сдано: {brought-IRON_INGOT}'
+          - '&7 - Лазурит &6x1024 &7Сдано: {brought-LAPIS_LAZULI}'
+      DIAMOND: 128
+      GOLD_INGOT: 256
+      IRON_INGOT: 512
+      LAPIS_LAZULI: 1024
+    5:
+      info:
+        material: ELYTRA
+        name: '&7Летун'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Элитры &6x3 &7Сдано: {brought-ELYTRA}'
+      ELYTRA: 3
+    6:
+      info:
+        material: DIAMOND
+        name: '&7Осыпь меня алмазами'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Алмаз &6x325 &7Сдано: {brought-DIAMOND}'
+      DIAMOND: 325
+    7:
+      info:
+        material: NETHERITE_SCRAP
+        name: '&7Незеритовый лом'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Незеритовый лом &6x16 &7Сдано: {brought-NETHERITE_SCRAP}'
+      NETHERITE_SCRAP: 16
+    8:
+      info:
+        material: GOLDEN_APPLE
+        name: '&7Золотое яблоко'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Золотое яблоко &6x128 &7Сдано: {brought-GOLDEN_APPLE}'
+      GOLDEN_APPLE: 128
+    9:
+      info:
+        material: GOLDEN_CARROT
+        name: '&7Золотая морковь'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Золотая морковь &6x256 &7Сдано: {brought-GOLDEN_CARROT}'
+      GOLDEN_CARROT: 256
+    10:
+      info:
+        material: BLAZE_ROD
+        name: '&7Огненный стержень'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Огненный стержень &6x704 &7Сдано: {brought-BLAZE_ROD}'
+      BLAZE_ROD: 704
+    11:
+      info:
+        material: NETHERITE_PICKAXE
+        name: '&7Незеритовая кирка'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Незеритовая кирка &6x5 &7Сдано: {brought-NETHERITE_PICKAXE}'
+      NETHERITE_PICKAXE: 5
+    12:
+      info:
+        material: GUNPOWDER
+        name: '&7Порох'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Порох &6x512 &7Сдано: {brought-GUNPOWDER}'
+      GUNPOWDER: 512
+    13:
+      info:
+        material: NETHER_WART
+        name: '&7Незерский нарост'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Незерский нарост &6x512 &7Сдано: {brought-NETHER_WART}'
+      NETHER_WART: 512
+    14:
+      info:
+        material: TOTEM_OF_UNDYING
+        name: '&7Тотем бессмертия'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Незерский нарост &6x3 &7Сдано: {brought-TOTEM_OF_UNDYING}'
+      TOTEM_OF_UNDYING: 3
+    15:
+      info:
+        material: NETHERITE_INGOT
+        name: '&7Незеритовый слиток'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Незерский нарост &6x2 &7Сдано: {brought-NETHERITE_INGOT}'
+      NETHERITE_INGOT: 2
+    16:
+      info:
+        material: HEART_OF_THE_SEA
+        name: '&7Сердце моря'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Сердце моря &6x8 &7Сдано: {brought-HEART_OF_THE_SEA}'
+      HEART_OF_THE_SEA: 8
+    17:
+      info:
+        material: TURTLE_HELMET
+        name: '&7Черепаший панцирь'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Черепаший панцирь &6x8 &7Сдано: {brought-TURTLE_HELMET}'
+      TURTLE_HELMET: 8
+    18:
+      info:
+        material: ENDER_EYE
+        name: '&7Око Эндера'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Око Эндера &6x128 &7Сдано: {brought-ENDER_EYE}'
+      ENDER_EYE: 128
+    19:
+      info:
+        material: GLISTERING_MELON_SLICE
+        name: '&7Сверкающий ломтик арбуза'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Сверкающий ломтик арбуза &6x256 &7Сдано: {brought-GLISTERING_MELON_SLICE}'
+      GLISTERING_MELON_SLICE: 256
+    20:
+      info:
+        material: KELP
+        name: '&7Ламинария'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Ламинария &6x8192 &7Сдано: {brought-KELP}'
+      KELP: 8192
+    21:
+      info:
+        material: TNT_MINECART
+        name: '&7Вагонетка с динамитом'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Вагонетка с динамитом &6x256 &7Сдано: {brought-TNT_MINECART}'
+      TNT_MINECART: 256
+    22:
+      info:
+        material: TURTLE_EGG
+        name: '&7Черепашье яйцо'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Черепашье яйцо &6x256 &7Сдано: {brought-TURTLE_EGG}'
+      TURTLE_EGG: 256
+    23:
+      info:
+        material: WITHER_ROSE
+        name: '&7Роза визера'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Роза визера &6x256 &7Сдано: {brought-WITHER_ROSE}'
+      WITHER_ROSE: 256
+    24:
+      info:
+        material: CRIMSON_FUNGUS
+        name: '&7Багровый гриб'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Багровый гриб &6x256 &7Сдано: {brought-CRIMSON_FUNGUS}'
+      CRIMSON_FUNGUS: 256
+    25:
+      info:
+        material: DIAMOND_SWORD
+        name: '&7Алмазный меч'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Алмазный меч &6x64 &7Сдано: {brought-DIAMOND_SWORD}'
+      DIAMOND_SWORD: 64
+    26:
+      info:
+        material: STONE_SHOVEL
+        name: '&7Каменная лопата'
+        lore:
+          - '&7Необходимо сдать'
+          - '&7 - Каменная лопата &6x320 &7Сдано: {brought-STONE_SHOVEL}'
+      STONE_SHOVEL: 320
+  type-bring-the-mob:
+    1:
+      info:
+        material: WITHER_ROSE
+        name: '&7Визер и житель'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должны находится'
+          - '&7Визер и житель'
+      WITHER: 1
+      VILLAGER: 1
+    2:
+      info:
+        material: BLAZE_ROD
+        name: '&7Ифрит'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должны находится'
+          - '&73 ифрита'
+      BLAZE: 3
+    3:
+      info:
+        material: GUNPOWDER
+        name: '&7Слизни'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должны находится'
+          - '&75 слизней'
+      SLIME: 5
+    4:
+      info:
+        material: GUNPOWDER
+        name: '&7Криперы'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должны находится'
+          - '&77 криперов'
+      CREEPER: 7
+    5:
+      info:
+        material: SHULKER_SHELL
+        name: '&7Шалкер'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Шалкер'
+      SHULKER: 1
+    6:
+      info:
+        material: TURTLE_EGG
+        name: '&7Черепаха'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должны находится'
+          - '&74 черепахи'
+      TURTLE: 4
+    7:
+      info:
+        material: COOKED_SALMON
+        name: '&7Лосось'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Лосось'
+      SALMON: 1
+    8:
+      info:
+        material: MOSSY_COBBLESTONE
+        name: '&7Чешуйница'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Чешуйница'
+      SILVERFISH: 1
+    9:
+      info:
+        material: LAVA_BUCKET
+        name: '&7Лавомерка'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Лавомерка'
+      STRIDER: 1
+    10:
+      info:
+        material: LIME_CARPET
+        name: '&7Лама торговца'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Лама торговца'
+      TRADER_LLAMA: 1
+    11:
+      info:
+        material: STONE_AXE
+        name: '&7Вредина'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Вредина'
+      VEX: 1
+    12:
+      info:
+        material: LIME_WOOL
+        name: '&7Странствующий торговец'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должен находится'
+          - '&7Странствующий торговец'
+      WANDERING_TRADER: 1
+    13:
+      info:
+        material: ROTTEN_FLESH
+        name: '&7Житель-зомби'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7Должны находится'
+          - '&7Житель-зомби &6x1&7, Житель &6x1'
+      ZOMBIE_VILLAGER: 1
+      VILLAGER: 1
+  type-place-block:
+    1:
+      info:
+        material: TNT
+        name: '&7Динамит и обсидиан'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7необходимо поставить'
+          - '&7Обсидиан &6x64 &7Поставлено {put-OBSIDIAN}'
+          - '&7Динамит &6x128 &7Поставлено {put-TNT}'
+      OBSIDIAN: 64
+      TNT: 128
+    2:
+      info:
+        material: WITHER_ROSE
+        name: '&7Визер роза'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7необходимо поставить'
+          - '&7Визер розу &6x64 &7Поставлено {put-WITHER_ROSE}'
+      WITHER_ROSE: 50
+  type-break-block:
+    1:
+      info:
+        material: OBSIDIAN
+        name: '&7Неломаемое ломаемо'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7необходимо сломать'
+          - '&7Обсидиан &6x640 &7сломано {broken-OBSIDIAN}'
+          - '&7Плачущий обсидиан &6x64 &7сломано {broken-CRYING_OBSIDIAN}'
+      OBSIDIAN: 640
+      CRYING_OBSIDIAN: 64
+    2:
+      info:
+        material: GRASS_BLOCK
+        name: '&7Земля и камень'
+        lore:
+          - '&7В радиусе 10 блоков от спавнера'
+          - '&7необходимо сломать'
+          - '&7Земля &6x4096 &7сломано {broken-GRASS_BLOCK}'
+          - '&7Камень &6x4096 &7сломано {broken-STONE}'
+      GRASS_BLOCK: 4096
+      STONE: 4096
+
+
+gui:
+  close:
+    material: BARRIER
+    slot: 53
+    name: '&cВыход'
+    lore: []
+    enchant: false
+    commands:
+      - '[CLOSE]'
+  decor:
+    material: BLACK_STAINED_GLASS_PANE
+    name: ' '
+    lore: []
+    enchant: false
+    commands: []
+    slots:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 18
+      - 27
+      - 36
+      - 45
+      - 46
+      - 47
+      - 48
+      - 50
+      - 51
+      - 52
+      - 44
+      - 35
+      - 26
+      - 17
