@@ -12,6 +12,7 @@ import org.by1337.bspawner.Task.*;
 import org.by1337.bspawner.util.Config;
 import org.by1337.bspawner.util.Message;
 import org.by1337.bspawner.util.SpawnerTask;
+import org.by1337.bspawner.util.TasksGenerate;
 
 
 import java.util.*;
@@ -28,19 +29,19 @@ public class InventoryGenerate {
         for (ITask key : spawnerTask.getTasks()) {
             switch (key.getTaskType()) {
                 case "type-bring-items": {
-                    inv.setItem(key.slot(), bringItemsItem((TaskBringItems) key));
+                    inv.setItem(key.getSlot(), bringItemsItem((TaskBringItems) key, spawnerTask));
                     break;
                 }
                 case "type-bring-the-mob": {
-                    inv.setItem(key.slot(), BringTheMobItem((TaskBringTheMob) key, spawnerTask));
+                    inv.setItem(key.getSlot(), BringTheMobItem((TaskBringTheMob) key, spawnerTask));
                     break;
                 }
                 case "type-place-block": {
-                    inv.setItem(key.slot(), PlaceBlock((TaskPlaceBlock) key));
+                    inv.setItem(key.getSlot(), PlaceBlock((TaskPlaceBlock) key, spawnerTask));
                     break;
                 }
                 case "type-break-block": {
-                    inv.setItem(key.slot(), BreakBlock((TaskBreakBlock) key));
+                    inv.setItem(key.getSlot(), BreakBlock((TaskBreakBlock) key, spawnerTask));
                     break;
                 }
             }
@@ -51,7 +52,7 @@ public class InventoryGenerate {
             inv.setItem(slot, items.get(slot));
         }
     }
-    private static ItemStack  BreakBlock(TaskBreakBlock task){
+    private static ItemStack BreakBlock(TaskBreakBlock task, SpawnerTask spawnerTask){
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -63,6 +64,16 @@ public class InventoryGenerate {
         HashMap<String, HashMap<String, Integer>> taskMap = task.getTask();//block -> amount:0, broken:0
 
         ItemStack item = new ItemStack(Material.JIGSAW);
+        if(taskMap.isEmpty()){
+            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
+            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
+            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            TaskBreakBlock newTask = TasksGenerate.taskBreakBlock(spawnerTask.getSpawner().getLocation(), task.getSlot());
+            newTask.setTaskActive(true);
+            taskMap.clear();
+            taskMap.putAll(task.getTask());
+            spawnerTask.ReplaceTask(task, newTask);
+        }
         for(String mat : taskMap.keySet()){
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-break-block." + task.getTaskId() + ".info.material")));
@@ -83,6 +94,8 @@ public class InventoryGenerate {
             im.getPersistentDataContainer().set(Objects.requireNonNull(NamespacedKey.fromString("type")), PersistentDataType.STRING, "type-break-block");
             item.setItemMeta(im);
         }
+
+
         List<String> lore = instance.getConfig().getStringList("tasks." + task.getTaskType() + "." + task.getTaskId() + ".info.lore");
         for(String key : taskMap.keySet())
             lore.replaceAll(s -> s.replace("{broken-" + key + "}", "" + taskMap.get(key).get("broken")));
@@ -93,7 +106,7 @@ public class InventoryGenerate {
         return item;
     }
 
-    private static ItemStack  PlaceBlock(TaskPlaceBlock task){
+    private static ItemStack  PlaceBlock(TaskPlaceBlock task, SpawnerTask spawnerTask){
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -106,6 +119,17 @@ public class InventoryGenerate {
         HashMap<String, HashMap<String, Integer>> taskMap = task.getTask();//block -> amount:0, put:0
 
         ItemStack item = new ItemStack(Material.JIGSAW);
+
+        if(taskMap.isEmpty()){
+            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
+            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
+            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            TaskPlaceBlock newTask = TasksGenerate.taskPlaceBlock(spawnerTask.getSpawner().getLocation(), task.getSlot());
+            newTask.setTaskActive(true);
+            taskMap.clear();
+            taskMap.putAll(task.getTask());
+            spawnerTask.ReplaceTask(task, newTask);
+        }
         for(String mat : taskMap.keySet()){
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material")));
@@ -126,6 +150,7 @@ public class InventoryGenerate {
             im.getPersistentDataContainer().set(Objects.requireNonNull(NamespacedKey.fromString("type")), PersistentDataType.STRING, "type-place-block");
             item.setItemMeta(im);
         }
+
         List<String> lore = instance.getConfig().getStringList("tasks." + task.getTaskType() + "." + task.getTaskId() + ".info.lore");
         for(String key : taskMap.keySet())
             lore.replaceAll(s -> s.replace("{put-" + key + "}", "" + taskMap.get(key).get("put")));
@@ -149,6 +174,16 @@ public class InventoryGenerate {
         HashMap<String, HashMap<String, Integer>> taskMap = task.getTask();//mob type -> amount:0, completed:0 | 0 false 1 true
 
         ItemStack item = new ItemStack(Material.JIGSAW);
+        if(taskMap.isEmpty()){
+            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
+            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
+            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            TaskBringTheMob newTask = TasksGenerate.taskBringTheMob(spawnerTask.getSpawner().getLocation(), task.getSlot());
+            newTask.setTaskActive(true);
+            taskMap.clear();
+            taskMap.putAll(task.getTask());
+            spawnerTask.ReplaceTask(task, newTask);
+        }
         for(String mob : taskMap.keySet()){
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-bring-the-mob." + task.getTaskId() + ".info.material")));
@@ -170,16 +205,14 @@ public class InventoryGenerate {
         }
 
         List<String> lore = instance.getConfig().getStringList("tasks." + task.getTaskType() + "." + task.getTaskId() + ".info.lore");
-//        for(String key : taskMap.keySet())
-//            lore.replaceAll(s -> s.replace("{brought-" + key + "}", "" + taskMap.get(key).get("brought")));
         item = ItemAddLore(item, lore);
-
+        
         if(task.isTaskCompleted())
             item = addEnchant(item);
         return item;
     }
 
-    private static ItemStack  bringItemsItem(TaskBringItems task){
+    private static ItemStack  bringItemsItem(TaskBringItems task, SpawnerTask spawnerTask){
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -192,14 +225,14 @@ public class InventoryGenerate {
         HashMap<String, HashMap<String, Integer>> taskMap = task.getTask();//mat -> bring:0, brought:0
         ItemStack item = new ItemStack(Material.JIGSAW);
         if(taskMap.isEmpty()){
-            item = ItemAddLore(item, new ArrayList<>(List.of(
-                    "&cЭто задание не правильно настроено",
-                    "&cПоэтому его невозможно пройти!",
-                    "&cСообщите об это администрации!"
-            )));
-            item = ItemSetName(item, "&cERROR");
-            item = addEnchant(item);
-            return item;
+            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
+            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
+            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            TaskBringItems newTask = TasksGenerate.bringItemsGenerate(task.getSlot());
+            newTask.setTaskActive(true);
+            taskMap.clear();
+            taskMap.putAll(task.getTask());
+            spawnerTask.ReplaceTask(task, newTask);
         }
         for(String mat : taskMap.keySet()){
             int bring = taskMap.get(mat).get("bring");
@@ -212,12 +245,6 @@ public class InventoryGenerate {
                 continue;
             }
 
-
-
-//            lore.replaceAll(s -> s.replace(
-//                    "{bring}", "" + bring).replace(
-//                    "{brought}", "" + brought).replace(
-//                    "{item-name}", Config.getTranslation("items." + mat.toUpperCase())));
 
             String name = instance.getConfig().getString("tasks.type-bring-items." + task.getTaskId() + ".info.name");
           //  assert name != null;
@@ -235,6 +262,7 @@ public class InventoryGenerate {
         for(String key : taskMap.keySet())
             lore.replaceAll(s -> s.replace("{brought-" + key + "}", "" + taskMap.get(key).get("brought")));
         item = ItemAddLore(item, lore);
+
 
         if(task.isTaskCompleted())
             item = addEnchant(item);

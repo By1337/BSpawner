@@ -10,7 +10,7 @@ public interface ITask {
 
     HashMap<String, HashMap<String, Integer>> getTask();
     void setTask(HashMap<String, HashMap<String, Integer>> task);
-    int slot();
+    int getSlot();
 
     boolean taskCompletionCheck();
     boolean isTaskActive();

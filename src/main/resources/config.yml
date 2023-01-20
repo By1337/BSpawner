@@ -283,13 +283,13 @@ tasks:
       CREEPER: 7
     5:
       info:
-        material: SHULKER_SHELL
-        name: '&7Шалкер'
+        material: MAGMA_CREAM
+        name: '&7Магмовый куб'
         lore:
           - '&7В радиусе 10 блоков от спавнера'
           - '&7Должен находится'
-          - '&7Шалкер'
-      SHULKER: 1
+          - '&7Магмовый куб &6x5'
+      MAGMA_CUBE: 5
     6:
       info:
         material: TURTLE_EGG

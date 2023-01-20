@@ -44,7 +44,7 @@ public class TaskBringItems implements ITask {
     }
 
     @Override
-    public int slot() {
+    public int getSlot() {
         return slot;
     }
 

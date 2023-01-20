@@ -57,7 +57,7 @@ public class TasksGenerate {
       //  return Task;
     }
 
-    private static TaskBringItems bringItemsGenerate (int slot){
+    public static TaskBringItems bringItemsGenerate (int slot){
         Set<String> tasksBringItems = instance.getConfig().getConfigurationSection("tasks.type-bring-items").getKeys(false);
         List<String> tasksBringItemsList = new ArrayList<>(tasksBringItems);
         String task = tasksBringItemsList.get(ThreadLocalRandom.current().nextInt(tasksBringItemsList.size()));
@@ -76,7 +76,7 @@ public class TasksGenerate {
         return new TaskBringItems(taskMap,slot, task);
     }
 
-    private static TaskBringTheMob taskBringTheMob(Location loc,int slot){
+    public static TaskBringTheMob taskBringTheMob(Location loc,int slot){
         HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//mob type -> amount:0, completed:0 | 0 false 1 true
 
         Set<String> tasksBringItems = instance.getConfig().getConfigurationSection("tasks.type-bring-the-mob").getKeys(false);
@@ -95,7 +95,7 @@ public class TasksGenerate {
         return new TaskBringTheMob(taskMap, loc,slot, task);
     }
 
-    private static TaskPlaceBlock taskPlaceBlock(Location loc,int slot){
+    public static TaskPlaceBlock taskPlaceBlock(Location loc,int slot){
         HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//block -> amount:0, put:0
 
         Set<String> tasksBringItems = instance.getConfig().getConfigurationSection("tasks.type-place-block").getKeys(false);
@@ -113,7 +113,7 @@ public class TasksGenerate {
 
         return new TaskPlaceBlock(taskMap, loc,slot, task);
     }
-    private static TaskBreakBlock taskBreakBlock(Location loc,int slot){
+    public static TaskBreakBlock taskBreakBlock(Location loc,int slot){
         HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//block -> amount:0, broken:0
 
         Set<String> tasksBringItems = instance.getConfig().getConfigurationSection("tasks.type-break-block").getKeys(false);

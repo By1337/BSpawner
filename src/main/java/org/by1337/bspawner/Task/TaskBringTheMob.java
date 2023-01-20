@@ -52,7 +52,7 @@ public class TaskBringTheMob implements ITask{
     }
 
     @Override
-    public int slot() {
+    public int getSlot() {
         return slot;
     }
 

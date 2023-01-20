@@ -9,7 +9,6 @@ import org.by1337.bspawner.Task.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import static org.by1337.bspawner.BSpawner.SpawnersDb;
 import static org.by1337.bspawner.BSpawner.instance;
@@ -66,49 +65,49 @@ public class Config{
             spawnerDb.set("spawners." + spawnerId + ".spawner-id", spawnerTask.getSpawnerId());
             for(ITask task : SpawnersDb.get(loc).getTasks()){
                 if(task instanceof TaskBreakBlock) {
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskActive", task.isTaskActive());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskCompleted", task.isTaskCompleted());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskId", task.getTaskId());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskActive", task.isTaskActive());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskCompleted", task.isTaskCompleted());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskId", task.getTaskId());
                     for (String key : task.getTask().keySet()) {//block -> amount:0, broken:0 TaskActive
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".broken", task.getTask().get(key).get("broken"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".broken", task.getTask().get(key).get("broken"));
                        // spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
                     }
                     continue;
                 }
                 if(task instanceof TaskBringItems){//mat -> bring:0, brought:0
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskActive", task.isTaskActive());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskCompleted", task.isTaskCompleted());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskId", task.getTaskId());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskActive", task.isTaskActive());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskCompleted", task.isTaskCompleted());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskId", task.getTaskId());
 
                     for(String key : task.getTask().keySet()){
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".bring", task.getTask().get(key).get("bring"));
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".brought", task.getTask().get(key).get("brought"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".bring", task.getTask().get(key).get("bring"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".brought", task.getTask().get(key).get("brought"));
                      //   spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
 
                     }
                     continue;
                 }
                 if(task instanceof TaskBringTheMob) {//mob type -> amount:0, completed:0 | 0 false 1 true
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskActive", task.isTaskActive());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskCompleted", task.isTaskCompleted());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskId", task.getTaskId());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskActive", task.isTaskActive());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskCompleted", task.isTaskCompleted());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskId", task.getTaskId());
                     for(String key : task.getTask().keySet()){
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".completed", task.getTask().get(key).get("completed"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".completed", task.getTask().get(key).get("completed"));
                      //   spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
 
                     }
                     continue;
                 }
                 if(task instanceof TaskPlaceBlock){//block -> amount:0, put:0
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskActive", task.isTaskActive());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskCompleted", task.isTaskCompleted());
-                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + ".TaskId", task.getTaskId());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskActive", task.isTaskActive());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskCompleted", task.isTaskCompleted());
+                    spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskId", task.getTaskId());
 
                     for(String key : task.getTask().keySet()){
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
-                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".put", task.getTask().get(key).get("put"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
+                        spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".put", task.getTask().get(key).get("put"));
                      //   spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
 
                     }

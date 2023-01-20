@@ -50,7 +50,7 @@ public class SpawnerListener implements Listener {
     }
     @EventHandler
     public void BreakSpawner(BlockBreakEvent e){
-        if(e.isCancelled() || e.getBlock().getType().equals(Material.SPAWNER))
+        if(e.isCancelled() || !e.getBlock().getType().equals(Material.SPAWNER))
             return;
         SpawnersDb.remove(e.getBlock().getLocation());
     }
@@ -65,13 +65,12 @@ public class SpawnerListener implements Listener {
                     return;
                 }
                 if(SpawnersDb.containsKey(e.getClickedBlock().getLocation())){
-                    InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()));
                     SpawnersDb.get(e.getClickedBlock().getLocation()).setSpawner(e.getClickedBlock());
+                    InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()));
                     pl.openInventory(SpawnersDb.get(e.getClickedBlock().getLocation()).getInv());
                 }else {
                     SpawnersDb.put(e.getClickedBlock().getLocation(), new SpawnerTask(e.getClickedBlock()));
                     InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()));
-                    SpawnersDb.get(e.getClickedBlock().getLocation()).setSpawner(e.getClickedBlock());
                     pl.openInventory(SpawnersDb.get(e.getClickedBlock().getLocation()).getInv());
                 }
             }

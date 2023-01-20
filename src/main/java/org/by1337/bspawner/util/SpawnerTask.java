@@ -4,13 +4,9 @@ package org.by1337.bspawner.util;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LightningStrike;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.by1337.bspawner.GuiItil.InventoryGenerate;
 import org.by1337.bspawner.Task.ITask;
 import org.by1337.bspawner.Task.TaskBringTheMob;
@@ -67,6 +63,14 @@ public class SpawnerTask {
         return allTaskComplete;
     }
 
+    public void ReplaceTask(ITask task, ITask newTask){
+        for (int x = 0; x < Tasks.size(); x++) {
+            if(Tasks.get(x).equals(task)){
+                Tasks.set(x, newTask);
+                break;
+            }
+        }
+    }
     public boolean CheckAllTaskCompleted() {
         boolean isChecked = false;
         for (ITask key : Tasks) {
@@ -83,7 +87,7 @@ public class SpawnerTask {
 
     public ITask getTaskBySlot(int slot) {
         for (ITask key : Tasks) {
-            if (slot == key.slot()) {
+            if (slot == key.getSlot()) {
                 return key;
             }
         }
@@ -91,7 +95,7 @@ public class SpawnerTask {
     }
 
     public void ActivateNextTask(ITask thisTask) {
-        int indexSlot = instance.getConfig().getIntegerList("tasks-slots").indexOf(thisTask.slot());
+        int indexSlot = instance.getConfig().getIntegerList("tasks-slots").indexOf(thisTask.getSlot());
         if (instance.getConfig().getIntegerList("tasks-slots").size() >= indexSlot) {
             //  int nextSlot  = instance.getConfig().getIntegerList("tasks-slots").get(indexSlot + 1);
             int nextSlot = instance.getConfig().getIntegerList("tasks-slots").size() == indexSlot + 1 ? -1 : instance.getConfig().getIntegerList("tasks-slots").get(indexSlot + 1);

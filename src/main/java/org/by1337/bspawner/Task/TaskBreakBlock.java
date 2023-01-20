@@ -52,7 +52,7 @@ public class TaskBreakBlock implements ITask{
     }
 
     @Override
-    public int slot() {
+    public int getSlot() {
         return slot;
     }
 
