@@ -12,16 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
 public class WorldGuardUtil {
     public static boolean isEmptyRegion(Location loc, UUID uuid){
-
         com.sk89q.worldedit.util.Location WGlocation = BukkitAdapter.adapt(loc);
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionQuery query = container.createQuery();
         ApplicableRegionSet set = query.getApplicableRegions(WGlocation);
-
-
         if (set.getRegions().isEmpty())
             return true;
         else{

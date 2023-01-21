@@ -1,6 +1,5 @@
 package org.by1337.bspawner.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -8,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CmdCompleter implements TabCompleter {
@@ -24,8 +22,6 @@ public class CmdCompleter implements TabCompleter {
                 return List.of(
                         "reload",
                         "complete",
-                        "save",
-                        "load",
                         "unlock",
                         "drop"
                 );

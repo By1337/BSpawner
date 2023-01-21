@@ -1,7 +1,6 @@
 package org.by1337.bspawner.util;
 
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.by1337.bspawner.Task.*;
 
 import java.util.*;
@@ -10,8 +9,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import static org.by1337.bspawner.BSpawner.instance;
 
 public class TasksGenerate {
-
-  //  @SuppressWarnings("unchecked")
     public static void Generate(SpawnerTask spawnerTask) {
         Set<String> SetTaskTypes = instance.getConfig().getConfigurationSection("tasks").getKeys(false);
         List<String> taskTypes = new ArrayList<>(SetTaskTypes);
@@ -53,8 +50,6 @@ public class TasksGenerate {
                 }
             }
         }
-
-      //  return Task;
     }
 
     public static TaskBringItems bringItemsGenerate (int slot){
@@ -70,14 +65,13 @@ public class TasksGenerate {
             taskMap.put(key, new HashMap<>());
             taskMap.get(key).put("bring", instance.getConfig().getInt("tasks.type-bring-items." + task + "." + key));
             taskMap.get(key).put("brought", 0);
-           // taskMap.get(key).put("id", Integer.valueOf(task));
         }
 
         return new TaskBringItems(taskMap,slot, task);
     }
 
     public static TaskBringTheMob taskBringTheMob(Location loc,int slot){
-        HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//mob type -> amount:0, completed:0 | 0 false 1 true
+        HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();
 
         Set<String> tasksBringItems = instance.getConfig().getConfigurationSection("tasks.type-bring-the-mob").getKeys(false);
         List<String> tasksBringItemsList = new ArrayList<>(tasksBringItems);
@@ -89,14 +83,13 @@ public class TasksGenerate {
             taskMap.put(key, new HashMap<>());
             taskMap.get(key).put("amount", instance.getConfig().getInt("tasks.type-bring-the-mob." + task + "." + key));
             taskMap.get(key).put("completed", 0);
-           // taskMap.get(key).put("id", Integer.valueOf(task));
         }
 
         return new TaskBringTheMob(taskMap, loc,slot, task);
     }
 
     public static TaskPlaceBlock taskPlaceBlock(Location loc,int slot){
-        HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//block -> amount:0, put:0
+        HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();
 
         Set<String> tasksBringItems = instance.getConfig().getConfigurationSection("tasks.type-place-block").getKeys(false);
         List<String> tasksBringItemsList = new ArrayList<>(tasksBringItems);
@@ -108,10 +101,8 @@ public class TasksGenerate {
             taskMap.put(key, new HashMap<>());
             taskMap.get(key).put("amount", instance.getConfig().getInt("tasks.type-place-block." + task + "." + key));
             taskMap.get(key).put("put", 0);
-           // taskMap.get(key).put("id", Integer.valueOf(task));
         }
-
-        return new TaskPlaceBlock(taskMap, loc,slot, task);
+        return new TaskPlaceBlock(taskMap,slot, task);
     }
     public static TaskBreakBlock taskBreakBlock(Location loc,int slot){
         HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//block -> amount:0, broken:0
@@ -126,9 +117,8 @@ public class TasksGenerate {
             taskMap.put(key, new HashMap<>());
             taskMap.get(key).put("amount", instance.getConfig().getInt("tasks.type-break-block." + task + "." + key));
             taskMap.get(key).put("broken", 0);
-          //  taskMap.get(key).put("id", Integer.valueOf(task));
         }
 
-        return new TaskBreakBlock(taskMap, loc,slot, task);
+        return new TaskBreakBlock(taskMap,slot, task);
     }
 }

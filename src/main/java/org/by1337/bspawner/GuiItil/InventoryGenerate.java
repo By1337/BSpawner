@@ -14,7 +14,6 @@ import org.by1337.bspawner.util.Message;
 import org.by1337.bspawner.util.SpawnerTask;
 import org.by1337.bspawner.util.TasksGenerate;
 
-
 import java.util.*;
 
 import static org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS;

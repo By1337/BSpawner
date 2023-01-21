@@ -7,8 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -23,13 +21,11 @@ import org.by1337.bspawner.util.Message;
 import org.by1337.bspawner.util.SpawnerTask;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 import static org.by1337.bspawner.BSpawner.*;
 
 public class InventoryListener implements Listener {
-
 
 
     @EventHandler
@@ -154,14 +150,12 @@ public class InventoryListener implements Listener {
             Message.sendMsg(pl, Config.getMessage("task-no-open"));
             return;
         }
-       // ItemStack itemStack = e.getCurrentItem();
 
         if (tasks.isTaskCompleted()) {
             Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
             return;
         }
         HashMap<String, HashMap<String, Integer>> taskMap = tasks.getTask();//mat -> bring:0, brought:0
-       // int completed = 0;
         for(String mat : taskMap.keySet()){
             try {
                 Material material = Material.valueOf(mat);
@@ -199,7 +193,7 @@ public class InventoryListener implements Listener {
             Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
         }
         if(tasks.taskCompletionCheck()){
-            Message.sendAllNear("&aЗадание выполнено!", spawnerTask.getSpawner().getLocation());
+            Message.sendAllNear(Config.getMessage("task-completed"), spawnerTask.getSpawner().getLocation());
             spawnerTask.ActivateNextTask(tasks);
         }
     }

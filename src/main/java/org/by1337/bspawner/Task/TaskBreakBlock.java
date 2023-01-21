@@ -1,9 +1,5 @@
 package org.by1337.bspawner.Task;
 
-import org.bukkit.Location;
-import org.by1337.bspawner.util.Message;
-
-import java.awt.font.TextHitInfo;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -15,12 +11,10 @@ public class TaskBreakBlock implements ITask{
 
     private final String TaskId;
     private boolean TaskActive = false;
-    private Location locSpawner;
     private final int slot;
 
-    public TaskBreakBlock(HashMap<String, HashMap<String, Integer>> taskMap, Location locSpawner, int slot, String TaskId) {
+    public TaskBreakBlock(HashMap<String, HashMap<String, Integer>> taskMap, int slot, String TaskId) {
         this.taskMap = taskMap;
-        this.locSpawner = locSpawner;
         this.slot = slot;
         this.TaskId = TaskId;
     }
@@ -90,9 +84,4 @@ public class TaskBreakBlock implements ITask{
             taskCompletionCheck();
         }
     }
-
-    public void setLocSpawner(Location locSpawner) {
-        this.locSpawner = locSpawner;
-    }
-
 }

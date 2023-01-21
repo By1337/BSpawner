@@ -8,6 +8,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.by1337.bspawner.Task.ITask;
 import org.by1337.bspawner.Task.TaskBringTheMob;
 import org.by1337.bspawner.Task.TaskPlaceBlock;
+import org.by1337.bspawner.util.Config;
 import org.by1337.bspawner.util.Message;
 import org.by1337.bspawner.util.SpawnerTask;
 
@@ -46,7 +47,7 @@ public class BlockPlace implements Listener {
                         taskMap.get(String.valueOf(e.getBlock().getType())).put("put", put + 1);
                         e.getBlock().setType(Material.AIR);
                         if(task.taskCompletionCheck()){
-                            Message.sendAllNear("&aЗадание выполнено!",spawnerTask.getSpawner().getLocation());
+                            Message.sendAllNear(Config.getMessage("task-completed"),spawnerTask.getSpawner().getLocation());
                             spawnerTask.ActivateNextTask(task);
                         }
 

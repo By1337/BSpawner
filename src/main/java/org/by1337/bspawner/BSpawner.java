@@ -11,6 +11,7 @@ import org.by1337.bspawner.Task.ITask;
 import org.by1337.bspawner.Task.TaskBringTheMob;
 import org.by1337.bspawner.command.Cmd;
 import org.by1337.bspawner.command.CmdCompleter;
+import org.by1337.bspawner.util.Config;
 import org.by1337.bspawner.util.Message;
 import org.by1337.bspawner.util.SpawnerTask;
 
@@ -51,7 +52,6 @@ public final class BSpawner extends JavaPlugin implements Runnable {
         Objects.requireNonNull(this.getCommand("bspawner")).setExecutor(new Cmd());
         Objects.requireNonNull(this.getCommand("bspawner")).setTabCompleter((new CmdCompleter()));
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, this, 4L, 4L);
-
     }
 
     @Override
@@ -70,22 +70,19 @@ public final class BSpawner extends JavaPlugin implements Runnable {
                 if (task instanceof TaskBringTheMob) {
                     if (task.isTaskCompleted())
                         continue;
-                    if(spawnerTask.getSpawner() == null)
+                    if (spawnerTask.getSpawner() == null)
                         continue;
-                    if(!task.isTaskActive())
+                    if (!task.isTaskActive())
                         continue;
                     if (task.taskCompletionCheck()) {
-                        Message.sendAllNear("&aЗадание выполнено!", spawnerTask.getSpawner().getLocation());
+                        Message.sendAllNear(Config.getMessage("task-completed"), spawnerTask.getSpawner().getLocation());
                         spawnerTask.ActivateNextTask(task);
-
                     }
-
-
                 }
             }
         }
         if (autoSaveDelay <= 0) {
-            autoSaveDelay =  30 * 60 * 5;
+            autoSaveDelay = 30 * 60 * 5;
             try {
                 saveSpawnerDb();
                 Message.logger("saving the database successfully!");

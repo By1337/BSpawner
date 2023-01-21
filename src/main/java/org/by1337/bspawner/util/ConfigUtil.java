@@ -6,12 +6,10 @@ import org.by1337.bspawner.Task.TaskBringItems;
 import org.by1337.bspawner.Task.TaskBringTheMob;
 import org.by1337.bspawner.Task.TaskPlaceBlock;
 
-
 import java.util.HashMap;
 
 import static org.by1337.bspawner.util.Config.spawnerDb;
-
-public class ConfigUtil {///TaskBringTheMob
+public class ConfigUtil {
     public static void LoadBringItems(SpawnerTask spawnerTask, String SpawnerId){//type-bring-items
         for(String slot : spawnerDb.getConfigurationSection("spawners." + SpawnerId + ".task.type-bring-items").getKeys(false)){
             int IntSlot = Integer.parseInt(slot);
@@ -36,7 +34,6 @@ public class ConfigUtil {///TaskBringTheMob
             spawnerTask.taskPut(taskBringItems, "type-bring-items");
         }
     }
-
     public static void LoadBringTheMob(SpawnerTask spawnerTask, String SpawnerId, Location location){///TaskBringTheMob
         for(String slot : spawnerDb.getConfigurationSection("spawners." + SpawnerId + ".task.type-bring-the-mob").getKeys(false)){
             int IntSlot = Integer.parseInt(slot);
@@ -77,7 +74,7 @@ public class ConfigUtil {///TaskBringTheMob
                 taskMap.put(mat, item);
             }
             String id = spawnerDb.getString("spawners." + key + ".task.type-place-block." + slot + ".TaskId");
-            TaskPlaceBlock taskPlaceBlock = new TaskPlaceBlock(taskMap, location, IntSlot, id);
+            TaskPlaceBlock taskPlaceBlock = new TaskPlaceBlock(taskMap, IntSlot, id);
             boolean active = spawnerDb.getBoolean("spawners." + key + ".task.type-place-block." + slot + ".TaskActive");
             boolean completed = spawnerDb.getBoolean("spawners." + key + ".task.type-place-block." + slot + ".TaskCompleted");
             if(completed)
@@ -102,7 +99,7 @@ public class ConfigUtil {///TaskBringTheMob
                 taskMap.put(mat, item);
             }
             String id = spawnerDb.getString("spawners." + key + ".task.type-break-block." + slot + ".TaskId");
-            TaskBreakBlock taskBreakBlock = new TaskBreakBlock(taskMap, location, IntSlot, id);
+            TaskBreakBlock taskBreakBlock = new TaskBreakBlock(taskMap, IntSlot, id);
             boolean active = spawnerDb.getBoolean("spawners." + key + ".task.type-break-block." + slot + ".TaskActive");
             boolean completed = spawnerDb.getBoolean("spawners." + key + ".task.type-break-block." + slot + ".TaskCompleted");
             if(completed)

@@ -1,6 +1,5 @@
 package org.by1337.bspawner.command;
 
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -8,26 +7,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
-import org.by1337.bspawner.GuiItil.InventoryGenerate;
 import org.by1337.bspawner.Task.ITask;
 import org.by1337.bspawner.util.Config;
-import org.by1337.bspawner.util.Effect.Sphere;
 import org.by1337.bspawner.util.Message;
-import org.by1337.bspawner.util.SpawnerTask;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.HashMap;
-
 
 import static org.by1337.bspawner.BSpawner.SpawnersDb;
 import static org.by1337.bspawner.BSpawner.instance;
-
 public class Cmd implements CommandExecutor {
-
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (!player.hasPermission("bs.*")) {
@@ -37,20 +28,6 @@ public class Cmd implements CommandExecutor {
             if (args.length == 0) {
                 Message.sendMsg(player, "&cМало аргументов");
                 return true;
-            }
-            if (args[0].equals("load")) {
-                try {
-                    Config.LoadSpawners();
-                } catch (IOException e) {
-                    Message.error(e.getMessage());
-                }
-            }
-            if (args[0].equals("save")) {
-                try {
-                    Config.saveSpawnerDb();
-                } catch (IOException e) {
-                    Message.error(e.getMessage());
-                }
             }
             if (args[0].equals("drop")) {
                 Block spawner = player.getTargetBlockExact(10);

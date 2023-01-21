@@ -1,10 +1,6 @@
 package org.by1337.bspawner.Task;
 
-import org.bukkit.Material;
-import org.bukkit.event.Listener;
-
 import java.util.HashMap;
-
 public class TaskBringItems implements ITask {
 
     private HashMap<String, HashMap<String, Integer>> taskMap;//mat -> bring:0, brought:0

@@ -1,6 +1,5 @@
 package org.by1337.bspawner.util;
 
-
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
@@ -11,7 +10,6 @@ import org.by1337.bspawner.GuiItil.InventoryGenerate;
 import org.by1337.bspawner.Task.ITask;
 import org.by1337.bspawner.Task.TaskBringTheMob;
 import org.by1337.bspawner.util.Effect.Sphere;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +24,8 @@ import static org.by1337.bspawner.util.Config.getTranslation;
 
 public class SpawnerTask {
 
-    // private HashMap<String, ITask> Task = new HashMap<>();
     private List<ITask> Tasks = new ArrayList<>();
-    //TasksGenerate tasksGenerate = new TasksGenerate();
+
     private boolean allTaskComplete = false;
     private boolean isDropped = false;
     private Block Spawner;
@@ -97,7 +94,6 @@ public class SpawnerTask {
     public void ActivateNextTask(ITask thisTask) {
         int indexSlot = instance.getConfig().getIntegerList("tasks-slots").indexOf(thisTask.getSlot());
         if (instance.getConfig().getIntegerList("tasks-slots").size() >= indexSlot) {
-            //  int nextSlot  = instance.getConfig().getIntegerList("tasks-slots").get(indexSlot + 1);
             int nextSlot = instance.getConfig().getIntegerList("tasks-slots").size() == indexSlot + 1 ? -1 : instance.getConfig().getIntegerList("tasks-slots").get(indexSlot + 1);
             if (indexSlot == -1)
                 return;
@@ -152,19 +148,6 @@ public class SpawnerTask {
         Spawner = spawner;
     }
 
-    public String getListType(ITask task) {
-        String str = "";
-        for (String key : task.getTask().keySet()) {
-            str += str != "" ? Config.getMessage("get-list-splitter") : "";
-            if (task instanceof TaskBringTheMob)
-                str += Config.getMessage("get-list-type").replace("{item}", Config.getTranslation("mobs." + key));
-            else
-                str += Config.getMessage("get-list-type").replace("{item}", Config.getTranslation("items." + key));
-
-        }
-        return str;
-    }
-
     public String getListTypeNum(ITask task, String key2) {
         String str = "";
         for (String key : task.getTask().keySet()) {
@@ -177,16 +160,11 @@ public class SpawnerTask {
         return str;
     }
 
-//    public HashMap<String, ITask> getTask() {
-//        return Task;
-//    }
-
     public List<ITask> getTasks() {
         return Tasks;
     }
 
     public void taskPut(ITask task, String type) {
-        // Task.put(type, task);
         Tasks.add(task);
     }
 
@@ -194,7 +172,4 @@ public class SpawnerTask {
         return allTaskComplete;
     }
 
-//    public void setTask(HashMap<String, ITask> task) {
-//        Task = task;
-//    }
 }

@@ -16,11 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.by1337.bspawner.GuiItil.InventoryGenerate;
-import org.by1337.bspawner.util.Message;
-import org.by1337.bspawner.util.SpawnerTask;
-import org.by1337.bspawner.util.TasksGenerate;
-import org.by1337.bspawner.util.WorldGuardUtil;
-
+import org.by1337.bspawner.util.*;
 
 import java.util.Objects;
 
@@ -61,7 +57,7 @@ public class SpawnerListener implements Listener {
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK){
             if(Objects.requireNonNull(e.getClickedBlock()).getType() == Material.SPAWNER && e.getHand() == EquipmentSlot.OFF_HAND){
                 if(!WorldGuardUtil.isEmptyRegion(e.getClickedBlock().getLocation(), pl.getUniqueId())){
-                    Message.sendMsg(pl, "&cВы не можете добыть заприваченый спавнер!");
+                    Message.sendMsg(pl, Config.getMessage("guard-spawner"));
                     return;
                 }
                 if(SpawnersDb.containsKey(e.getClickedBlock().getLocation())){
@@ -77,7 +73,6 @@ public class SpawnerListener implements Listener {
         }
 
     }
-
 
     @EventHandler
     public void explode(EntityExplodeEvent e){

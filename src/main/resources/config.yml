@@ -16,7 +16,7 @@ get-spawner:
 
 tasks:
   type-bring-items:
-    1: #only num
+    1:
       info:
         material: COARSE_DIRT
         name: '&7Каменистая земля'
@@ -24,6 +24,16 @@ tasks:
           - '&7Необходимо сдать'
           - '&7 - Гравий &6x960 &7Сдано: {brought-GRAVEL}'
           - '&7 - Земля &6x960 &7Сдано: {brought-DIRT}'
+      GRAVEL: 960
+      DIRT: 960
+    "lol":
+      info:
+        material: COARSE_DIRT
+        name: '&clol'
+        lore:
+          - '&7Необхоfgfдимо сдать'
+          - '&7 - Гравий &6x960 fgfg&7Сдано: {brought-GRAVEL}'
+          - '&7 - Землgfgfg &6x960 &7Сдано: {brought-DIRT}'
       GRAVEL: 960
       DIRT: 960
     2:

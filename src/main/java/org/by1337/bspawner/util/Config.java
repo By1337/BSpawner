@@ -71,7 +71,7 @@ public class Config{
                     for (String key : task.getTask().keySet()) {//block -> amount:0, broken:0 TaskActive
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".broken", task.getTask().get(key).get("broken"));
-                       // spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
+
                     }
                     continue;
                 }
@@ -83,7 +83,7 @@ public class Config{
                     for(String key : task.getTask().keySet()){
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".bring", task.getTask().get(key).get("bring"));
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".brought", task.getTask().get(key).get("brought"));
-                     //   spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
+
 
                     }
                     continue;
@@ -95,8 +95,6 @@ public class Config{
                     for(String key : task.getTask().keySet()){
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".completed", task.getTask().get(key).get("completed"));
-                     //   spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
-
                     }
                     continue;
                 }
@@ -108,8 +106,6 @@ public class Config{
                     for(String key : task.getTask().keySet()){
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".amount", task.getTask().get(key).get("amount"));
                         spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + ".put", task.getTask().get(key).get("put"));
-                     //   spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.slot() + "." + key + ".id", task.getTask().get(key).get("id"));
-
                     }
                 }
 

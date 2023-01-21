@@ -8,14 +8,13 @@ import org.by1337.bspawner.util.Message;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 public class TaskBringTheMob implements ITask{
 
 
-    private HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//mob type -> amount:0, completed:0 | 0 false 1 true
+    private HashMap<String, HashMap<String, Integer>> taskMap;//mob type -> amount:0, completed:0 | 0 false 1 true
 
     private boolean isTaskCompleted = false;
-    private Location locSpawner = null;
+    private final Location locSpawner;
     private boolean TaskActive = false;
     private final String TaskId;
     int slot;
@@ -122,7 +121,6 @@ public class TaskBringTheMob implements ITask{
             taskMap.get(mat).put("completed", 1);
             setTaskActive(true);
             isTaskCompleted = true;
-           // taskCompletionCheck();
         }
     }
 }

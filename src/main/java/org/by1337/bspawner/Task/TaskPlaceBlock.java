@@ -1,26 +1,19 @@
 package org.by1337.bspawner.Task;
 
-import org.bukkit.Location;
-import org.bukkit.block.data.FaceAttachable;
-import org.bukkit.event.block.BlockRedstoneEvent;
-
 import java.util.HashMap;
 import java.util.Objects;
 
 public class TaskPlaceBlock implements ITask{
 
-    private HashMap<String, HashMap<String, Integer>> taskMap = new HashMap<>();//block -> amount:0, put:0
+    private HashMap<String, HashMap<String, Integer>> taskMap;//block -> amount:0, put:0
 
     private boolean isTaskCompleted = false;
-
-    private Location locSpawner = null;
     private boolean TaskActive = false;
-    private int slot;
+    private final int slot;
     private final String TaskId;
 
-    public TaskPlaceBlock(HashMap<String, HashMap<String, Integer>> taskMap, Location locSpawner, int slot, String TaskId) {
+    public TaskPlaceBlock(HashMap<String, HashMap<String, Integer>> taskMap, int slot, String TaskId) {
         this.taskMap = taskMap;
-        this.locSpawner = locSpawner;
         this.slot = slot;
         this.TaskId = TaskId;
     }
@@ -69,9 +62,6 @@ public class TaskPlaceBlock implements ITask{
         return isCheck;
     }
 
-    private void setLocSpawner(Location locSpawner) {
-        this.locSpawner = locSpawner;
-    }
     @Override
     public boolean isTaskActive() {
         return TaskActive;

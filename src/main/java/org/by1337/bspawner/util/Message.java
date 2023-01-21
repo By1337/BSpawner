@@ -1,7 +1,5 @@
 package org.by1337.bspawner.util;
 
-
-
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -9,7 +7,6 @@ import org.bukkit.Location;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-
 
 import java.util.Objects;
 import java.util.logging.Level;

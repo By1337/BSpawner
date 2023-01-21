@@ -1,7 +1,6 @@
 package org.by1337.bspawner.util;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
