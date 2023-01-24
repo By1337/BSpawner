@@ -1,6 +1,5 @@
 
 tasks-slots: [19, 21, 23, 25]
-hide-tasks: true #если true то предметы будут скрыты
 locked-tasks-material: BARRIER
 
 get-spawner:
@@ -24,16 +23,6 @@ tasks:
           - '&7Необходимо сдать'
           - '&7 - Гравий &6x960 &7Сдано: {brought-GRAVEL}'
           - '&7 - Земля &6x960 &7Сдано: {brought-DIRT}'
-      GRAVEL: 960
-      DIRT: 960
-    "lol":
-      info:
-        material: COARSE_DIRT
-        name: '&clol'
-        lore:
-          - '&7Необхоfgfдимо сдать'
-          - '&7 - Гравий &6x960 fgfg&7Сдано: {brought-GRAVEL}'
-          - '&7 - Землgfgfg &6x960 &7Сдано: {brought-DIRT}'
       GRAVEL: 960
       DIRT: 960
     2:

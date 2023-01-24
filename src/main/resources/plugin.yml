@@ -3,7 +3,8 @@ version: '${project.version}'
 main: org.by1337.bspawner.BSpawner
 api-version: 1.16
 authors: [ By1337 ]
-description: sp
+description: Get a spawner by completing tasks
+softdepend: [PlaceholderAPI, WorldGuard, WorldEdit]
 commands:
   bspawner:
     description: Standart Command

@@ -20,9 +20,8 @@ import static org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS;
 import static org.by1337.bspawner.BSpawner.instance;
 
 public class InventoryGenerate {
-    public static void MenuGenerate(SpawnerTask spawnerTask) {//mat -> slot:0, bring:0, brought:0
+    public static void MenuGenerate(SpawnerTask spawnerTask) {
         Inventory inv = spawnerTask.getInv();
-        boolean isCompleted = true;
         List<Integer> slots = instance.getConfig().getIntegerList("tasks-slots");
         slots.stream().sorted();
         for (ITask key : spawnerTask.getTasks()) {
