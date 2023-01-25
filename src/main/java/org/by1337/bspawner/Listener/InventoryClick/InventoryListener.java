@@ -80,6 +80,11 @@ public class InventoryListener implements Listener {
         if (instance.getConfig().getIntegerList("tasks-slots").contains(e.getSlot())) {
             ItemStack item = e.getCurrentItem();
             ItemMeta im = item.getItemMeta();
+            if (String.valueOf(item.getType()).equalsIgnoreCase(instance.getConfig().getString("locked-tasks-material"))) {
+                Message.sendMsg(pl, Config.getMessage("task-no-open"));
+                e.setCancelled(true);
+                return;
+            }
 
             assert im != null;
             String type = im.getPersistentDataContainer().get(Objects.requireNonNull(NamespacedKey.fromString("type")), PersistentDataType.STRING);
@@ -146,10 +151,6 @@ public class InventoryListener implements Listener {
     }
     private void bringItems(ItemStack item, TaskBringItems tasks, Player pl, SpawnerTask spawnerTask){
         if(tasks == null) return;
-        if (String.valueOf(item.getType()).equalsIgnoreCase(instance.getConfig().getString("locked-tasks-material"))) {
-            Message.sendMsg(pl, Config.getMessage("task-no-open"));
-            return;
-        }
 
         if (tasks.isTaskCompleted()) {
             Message.sendMsg(pl,  Config.getMessage("task-completed-click"));

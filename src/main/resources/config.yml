@@ -382,7 +382,7 @@ tasks:
           - '&7В радиусе 10 блоков от спавнера'
           - '&7необходимо поставить'
           - '&7Визер розу &6x64 &7Поставлено {put-WITHER_ROSE}'
-      WITHER_ROSE: 50
+      WITHER_ROSE: 64
   type-break-block:
     1:
       info:
