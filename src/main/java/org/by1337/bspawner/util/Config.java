@@ -22,9 +22,15 @@ public class Config{
     static File fileMessage;
 
     public static String getTranslation(String path){
+        if(translations.getString(path) == null){
+            return Message.messageBuilder("&cПеревода с таким пути нет!, There is no translation from this path!");
+        }
             return Message.messageBuilder(translations.getString(path));
     }
     public static String getMessage(String path){
+        if(message.getString(path) == null){
+            return Message.messageBuilder("&cСообщения с таким пути нет!, There are no messages with this path!");
+        }
         return Message.messageBuilder(message.getString(path));
     }
     public static void LoadYamlConfiguration(){

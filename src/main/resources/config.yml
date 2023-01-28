@@ -144,7 +144,7 @@ tasks:
         name: '&7Тотем бессмертия'
         lore:
           - '&7Необходимо сдать'
-          - '&7 - Незерский нарост &6x3 &7Сдано: {brought-TOTEM_OF_UNDYING}'
+          - '&7 - Тотем бессмертия &6x3 &7Сдано: {brought-TOTEM_OF_UNDYING}'
       TOTEM_OF_UNDYING: 3
     15:
       info:
@@ -152,7 +152,7 @@ tasks:
         name: '&7Незеритовый слиток'
         lore:
           - '&7Необходимо сдать'
-          - '&7 - Незерский нарост &6x2 &7Сдано: {brought-NETHERITE_INGOT}'
+          - '&7 - Незеритовый слиток &6x2 &7Сдано: {brought-NETHERITE_INGOT}'
       NETHERITE_INGOT: 2
     16:
       info:

@@ -18,7 +18,6 @@ public class TaskBringTheMob implements ITask{
     private boolean TaskActive = false;
     private final String TaskId;
     int slot;
-
     public TaskBringTheMob(HashMap<String, HashMap<String, Integer>> taskMap, Location locSpawner, int slot, String TaskId) {
         this.taskMap = taskMap;
         this.locSpawner = locSpawner;

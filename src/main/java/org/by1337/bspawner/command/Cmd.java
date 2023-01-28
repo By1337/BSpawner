@@ -22,21 +22,21 @@ public class Cmd implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (!player.hasPermission("bs.*")) {
-                Message.sendMsg(player, "&cНеизвестная команда!");
+                Message.sendMsg(player, Config.getMessage("unknown-command"));
                 return true;
             }
             if (args.length == 0) {
-                Message.sendMsg(player, "&cМало аргументов");
+                Message.sendMsg(player, Config.getMessage("few-arguments"));
                 return true;
             }
             if (args[0].equals("drop")) {
                 Block spawner = player.getTargetBlockExact(10);
                 if (spawner == null) {
-                    Message.sendMsg(player, "&cВы не смотрите на блок!");
+                    Message.sendMsg(player, Config.getMessage("no-block"));
                     return true;
                 }
                 if (!spawner.getType().equals(Material.SPAWNER)) {
-                    Message.sendMsg(player, "&cВы смотрите не на спавнер!");
+                    Message.sendMsg(player, Config.getMessage("no-spawner"));
                     return true;
                 }
                 for (Location loc : SpawnersDb.keySet()) {
@@ -44,21 +44,21 @@ public class Cmd implements CommandExecutor {
                         continue;
                     if (SpawnersDb.get(loc).getSpawner().equals(spawner)) {
                         SpawnersDb.get(loc).MineSpawner();
-                        Message.sendMsg(player, "&aСпавнер был добыт!");
+                        Message.sendMsg(player, Config.getMessage("spawner-mined"));
                         return true;
                     }
                 }
-                Message.sendMsg(player, "&cЗадания в этом спавнере ещё не сгенерированы");
+                Message.sendMsg(player, Config.getMessage("task-not-generated"));
                 return true;
             }
             if (args[0].equals("unlock")) {
                 Block spawner = player.getTargetBlockExact(10);
                 if (spawner == null) {
-                    Message.sendMsg(player, "&cВы не смотрите на блок!");
+                    Message.sendMsg(player, Config.getMessage("no-block"));
                     return true;
                 }
                 if (!spawner.getType().equals(Material.SPAWNER)) {
-                    Message.sendMsg(player, "&cВы смотрите не на спавнер!");
+                    Message.sendMsg(player, Config.getMessage("no-spawner"));
                     return true;
                 }
                 for (Location loc : SpawnersDb.keySet()) {
@@ -67,21 +67,21 @@ public class Cmd implements CommandExecutor {
                     if (SpawnersDb.get(loc).getSpawner().equals(spawner)) {
                         for (ITask task : SpawnersDb.get(loc).getTasks())
                             task.setTaskActive(true);
-                        Message.sendMsg(player, "&aВсе задания в спавнере были разблокированы!");
+                        Message.sendMsg(player, Config.getMessage("task-unlocked"));
                         return true;
                     }
                 }
-                Message.sendMsg(player, "&cЗадания в этом спавнере ещё не сгенерированы");
+                Message.sendMsg(player, Config.getMessage("task-not-generated"));
                 return true;
             }
             if (args[0].equals("complete")) {
                 Block spawner = player.getTargetBlockExact(10);
                 if (spawner == null) {
-                    Message.sendMsg(player, "&cВы не смотрите на блок!");
+                    Message.sendMsg(player, Config.getMessage("no-block"));
                     return true;
                 }
                 if (!spawner.getType().equals(Material.SPAWNER)) {
-                    Message.sendMsg(player, "&cВы смотрите не на спавнер!");
+                    Message.sendMsg(player, Config.getMessage("no-spawner"));
                     return true;
                 }
                 for (Location loc : SpawnersDb.keySet()) {
@@ -90,11 +90,11 @@ public class Cmd implements CommandExecutor {
                     if (SpawnersDb.get(loc).getSpawner().equals(spawner)) {
                         for (ITask task : SpawnersDb.get(loc).getTasks())
                             task.setComplete();
-                        Message.sendMsg(player, "&aВсе задания в спавнере были выполнены!");
+                        Message.sendMsg(player, Config.getMessage("all-task-completed"));
                         return true;
                     }
                 }
-                Message.sendMsg(player, "&cЗадания в этом спавнере ещё не сгенерированы");
+                Message.sendMsg(player, Config.getMessage("task-not-generated"));
                 return true;
             }
 
@@ -108,7 +108,7 @@ public class Cmd implements CommandExecutor {
                         } catch (IOException e) {
                             Message.error(e.getMessage());
                         }
-                        Message.sendMsg(player, "&aКонфиг файлы перезагружены! &e с флагом -force");
+                        Message.sendMsg(player, Config.getMessage("config-reloaded-force"));
                         return true;
                     }
                 }
@@ -119,7 +119,7 @@ public class Cmd implements CommandExecutor {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                Message.sendMsg(player, "&aКонфиг файлы перезагружены!");
+                Message.sendMsg(player, Config.getMessage("config-reloaded"));
                 return true;
             }
 
