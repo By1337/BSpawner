@@ -1,4 +1,5 @@
 #Translation by google translator
+#Translation by google translator
 get-by: "&aYou have successfully submitted &6{item} x{amount}"
 no-item: "&cYou don't have the required item!"
 task-completed-click: '&cYou have already completed this task!'
@@ -16,7 +17,6 @@ get-list-type: '{item}'
 get-list-splitter: '&7, '
 get-list-type-num: '&6{item} x{num}'
 guard-spawner: "&cYou can't get a locked spawner!"
-
 unknown-command: '&cUnknown command'
 few-arguments: '&cFew arguments'
 no-block: "&cYou don't look at the block!"
@@ -26,3 +26,8 @@ task-unlocked: '&aAll tasks in the spawner have been unlocked!'
 all-task-completed: '&aAll tasks in the spawner have been completed!'
 config-reloaded: '&aConfig files reloaded!'
 config-reloaded-force: '&aConfig files reloaded! &e with the -force flag'
+task-error: 'Task %s %s'
+task-error-2: 'In slot %s in spawner %s'
+task-error-3: 'Broken! So it was re-generated'
+material-error: 'Materiala %s does not exist!'
+entity-error: 'mob %s does not exist'
