@@ -30,7 +30,7 @@ public class SpawnerTask {
     private boolean isDropped = false;
     private Block Spawner;
     private final String spawnerId;
-    private Inventory inv = Bukkit.createInventory(null, 54, "§7Спавнер");
+    private Inventory inv = Bukkit.createInventory(null, 54, Config.getMessage("spawner-inventory-name"));
 
     public SpawnerTask(Block spawner) {
         Spawner = spawner;

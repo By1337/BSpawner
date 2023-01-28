@@ -55,7 +55,7 @@ public class InventoryGenerate {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
             assert itemMeta != null;
-            itemMeta.setDisplayName(Message.messageBuilder("&cВыполните предыдущие задание!"));
+            itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
         }
@@ -63,9 +63,9 @@ public class InventoryGenerate {
 
         ItemStack item = new ItemStack(Material.JIGSAW);
         if(taskMap.isEmpty()){
-            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
-            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
-            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            Message.error(String.format(Config.getMessage("task-error"), task.getTaskType(), task.getTaskId()));
+            Message.error(String.format(Config.getMessage("task-error-2"), task.getSlot(), spawnerTask.getSpawner().getLocation()));
+            Message.error(Config.getMessage("task-error-3"));
             TaskBreakBlock newTask = TasksGenerate.taskBreakBlock(spawnerTask.getSpawner().getLocation(), task.getSlot());
             newTask.setTaskActive(true);
             taskMap.clear();
@@ -76,7 +76,8 @@ public class InventoryGenerate {
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-break-block." + task.getTaskId() + ".info.material")));
             } catch (IllegalArgumentException e) {
-                Message.error("Матерьяла " + instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material") + " Не существует!");
+                Message.error(String.format(Config.getMessage("material-error"), instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material")));
+
                 continue;
             }
             int amount = taskMap.get(mat).get("amount");
@@ -109,7 +110,7 @@ public class InventoryGenerate {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
             assert itemMeta != null;
-            itemMeta.setDisplayName(Message.messageBuilder("&cВыполните предыдущие задание!"));
+            itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
         }
@@ -119,9 +120,9 @@ public class InventoryGenerate {
         ItemStack item = new ItemStack(Material.JIGSAW);
 
         if(taskMap.isEmpty()){
-            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
-            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
-            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            Message.error(String.format(Config.getMessage("task-error"), task.getTaskType(), task.getTaskId()));
+            Message.error(String.format(Config.getMessage("task-error-2"), task.getSlot(), spawnerTask.getSpawner().getLocation()));
+            Message.error(Config.getMessage("task-error-3"));
             TaskPlaceBlock newTask = TasksGenerate.taskPlaceBlock(spawnerTask.getSpawner().getLocation(), task.getSlot());
             newTask.setTaskActive(true);
             taskMap.clear();
@@ -132,7 +133,7 @@ public class InventoryGenerate {
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material")));
             } catch (IllegalArgumentException e) {
-                Message.error("Матерьяла " + instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material") + " Не существует!");
+                Message.error(String.format(Config.getMessage("material-error"), instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material")));
                 continue;
             }
             int amount = taskMap.get(mat).get("amount");
@@ -164,7 +165,7 @@ public class InventoryGenerate {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
             assert itemMeta != null;
-            itemMeta.setDisplayName(Message.messageBuilder("&cВыполните предыдущие задание!"));
+            itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
         }
@@ -173,9 +174,9 @@ public class InventoryGenerate {
 
         ItemStack item = new ItemStack(Material.JIGSAW);
         if(taskMap.isEmpty()){
-            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
-            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
-            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            Message.error(String.format(Config.getMessage("task-error"), task.getTaskType(), task.getTaskId()));
+            Message.error(String.format(Config.getMessage("task-error-2"), task.getSlot(), spawnerTask.getSpawner().getLocation()));
+            Message.error(Config.getMessage("task-error-3"));
             TaskBringTheMob newTask = TasksGenerate.taskBringTheMob(spawnerTask.getSpawner().getLocation(), task.getSlot());
             newTask.setTaskActive(true);
             taskMap.clear();
@@ -186,7 +187,7 @@ public class InventoryGenerate {
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-bring-the-mob." + task.getTaskId() + ".info.material")));
             } catch (IllegalArgumentException e) {
-                Message.error("Матерьяла " + instance.getConfig().getString("tasks.type-bring-the-mob." + task.getTaskId() + ".info.material") + " Не существует!");
+                Message.error(String.format(Config.getMessage("material-error"), instance.getConfig().getString("tasks.type-place-block." + task.getTaskId() + ".info.material")));
                 continue;
             }
             int amount = taskMap.get(mob).get("amount");
@@ -215,7 +216,7 @@ public class InventoryGenerate {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
             assert itemMeta != null;
-            itemMeta.setDisplayName(Message.messageBuilder("&cВыполните предыдущие задание!"));
+            itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
         }
@@ -223,9 +224,9 @@ public class InventoryGenerate {
         HashMap<String, HashMap<String, Integer>> taskMap = task.getTask();//mat -> bring:0, brought:0
         ItemStack item = new ItemStack(Material.JIGSAW);
         if(taskMap.isEmpty()){
-            Message.error("Задание " + task.getTaskType() + " " + task.getTaskId());
-            Message.error("В слоте " + task.getSlot() + " В спавнере " + spawnerTask.getSpawner().getLocation());
-            Message.error("Сломано! Поэтому оно было сгенерировано заново");
+            Message.error(String.format(Config.getMessage("task-error"), task.getTaskType(), task.getTaskId()));
+            Message.error(String.format(Config.getMessage("task-error-2"), task.getSlot(), spawnerTask.getSpawner().getLocation()));
+            Message.error(Config.getMessage("task-error-3"));
             TaskBringItems newTask = TasksGenerate.bringItemsGenerate(task.getSlot());
             newTask.setTaskActive(true);
             taskMap.clear();
@@ -239,14 +240,13 @@ public class InventoryGenerate {
             try {
                 item.setType(Material.valueOf(instance.getConfig().getString("tasks.type-bring-items." + task.getTaskId() + ".info.material")));
             } catch (IllegalArgumentException e) {
-                Message.error("Матерьяла " + mat + " Не существует!");
+                Message.error(String.format(Config.getMessage("material-error"), mat));
                 continue;
             }
 
 
             String name = instance.getConfig().getString("tasks.type-bring-items." + task.getTaskId() + ".info.name");
-          //  assert name != null;
-          //  name = name.replace("{item-name}", Config.getTranslation("items." + item.getType()));
+
             item = ItemSetName(item, name);
             ItemMeta im = item.getItemMeta();
 
@@ -273,7 +273,7 @@ public class InventoryGenerate {
             try {
                 item = new ItemStack(Material.valueOf(instance.getConfig().getString("gui." + key + ".material")));
             } catch (IllegalArgumentException e) {
-                Message.error("Матерьяла " + key + " Не существует!");
+                Message.error(String.format(Config.getMessage("material-error"), key));
                 continue;
             }
             if (instance.getConfig().get("gui." + key + ".name") != null)

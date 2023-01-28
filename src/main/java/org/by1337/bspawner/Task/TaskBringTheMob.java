@@ -3,6 +3,7 @@ package org.by1337.bspawner.Task;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.by1337.bspawner.util.Config;
 import org.by1337.bspawner.util.Message;
 
 import java.util.ArrayList;
@@ -64,9 +65,8 @@ public class TaskBringTheMob implements ITask{
             EntityType mob;
             try {
                 mob = EntityType.valueOf(key);
-            }catch (Exception e){
-                Message.error("TaskBringTheMob -> taskCompletionCheck:42");
-                Message.error(e.getMessage());
+            }catch (IllegalArgumentException e){
+                Message.error(String.format(Config.getMessage("entity-error"), key));
                 continue;
             }
 

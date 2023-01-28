@@ -60,7 +60,7 @@ public class Config{
                 continue;
             String spawnerId = spawnerTask.getSpawnerId();
             if(loc.getWorld() == null){
-                Message.error(loc + " равен null!");
+                Message.error(loc + " is null!");
                 continue;
             }
 

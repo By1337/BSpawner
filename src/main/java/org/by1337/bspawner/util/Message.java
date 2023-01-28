@@ -21,7 +21,7 @@ public class Message {
     private static final ConsoleCommandSender SENDER = Bukkit.getConsoleSender();
     private static final String AUTHOR = "&#a612cb&lB&#9a17d2&ly&#8d1bd9&l1&#8120e1&l3&#7424e8&l3&#6829ef&l7";
     private static final String prefixPlugin = "&7[&#7305ffB&#7e07ffS&#8a09ffp&#950bffa&#a00effw&#ab10ffn&#b712ffe&#c214ffr&7]";
-    private static final String Prefix = "&7[Спавнер]";
+    private static final String Prefix = "&7[Spawner]";
     public static final Pattern RAW_HEX_REGEX = Pattern.compile("&(#[a-f0-9]{6})", Pattern.CASE_INSENSITIVE);
 
 

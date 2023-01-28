@@ -85,7 +85,7 @@ public final class BSpawner extends JavaPlugin implements Runnable {
             autoSaveDelay = 30 * 60 * 5;
             try {
                 saveSpawnerDb();
-                Message.logger("saving the database successfully!");
+                Message.logger("{PP} saving the database successfully!");
             } catch (IOException e) {
                 Message.error(e.getMessage());
             }
