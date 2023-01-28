@@ -17,7 +17,10 @@ public class TaskPlaceBlock implements ITask{
         this.slot = slot;
         this.TaskId = TaskId;
     }
-
+    @Override
+    public String[] getKey() {
+        return new String[]{"amount", "put"};
+    }
     @Override
     public String getTaskId() {
         return TaskId;

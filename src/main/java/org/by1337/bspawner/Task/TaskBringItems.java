@@ -14,7 +14,10 @@ public class TaskBringItems implements ITask {
         this.slot = slot;
         this.TaskId = TaskId;
     }
-
+    @Override
+    public String[] getKey() {
+        return new String[]{"bring", "brought"};
+    }
     @Override
     public String getTaskId() {
         return TaskId;

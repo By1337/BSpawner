@@ -15,6 +15,7 @@ get-list-type: '{item}'
 get-list-splitter: '&7, '
 get-list-type-num: '&6{item} x{num}'
 guard-spawner: '&cВы не можете добыть заприваченый спавнер!'
+
 unknown-command: '&cНеизвестная команда'
 few-arguments: '&cМало аргументов'
 no-block: '&cВы не смотрите на блок!'

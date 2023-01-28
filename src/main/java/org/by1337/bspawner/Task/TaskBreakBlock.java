@@ -25,6 +25,11 @@ public class TaskBreakBlock implements ITask{
     }
 
     @Override
+    public String[] getKey() {
+        return new String[]{"amount", "broken"};
+    }
+
+    @Override
     public boolean isTaskCompleted() {
         return isTaskCompleted;
     }

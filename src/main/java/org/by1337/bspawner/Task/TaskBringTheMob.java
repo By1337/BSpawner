@@ -27,6 +27,10 @@ public class TaskBringTheMob implements ITask{
     }
 
     @Override
+    public String[] getKey() {
+        return new String[]{"amount", "completed"};
+    }
+    @Override
     public String getTaskId() {
         return TaskId;
     }

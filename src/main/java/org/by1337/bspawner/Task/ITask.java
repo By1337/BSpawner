@@ -13,5 +13,6 @@ public interface ITask {
     void setTaskActive(boolean active);
     void setComplete();
     String getTaskId();
+    String[] getKey();
 
 }
