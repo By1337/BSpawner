@@ -1,0 +1,450 @@
+#Translation by google translator
+tasks-slots: [19, 21, 23, 25]
+locked-tasks-material: BARRIER
+
+get-spawner:
+  material: GOLDEN_PICKAXE
+  slot: 49
+  enchanted: true
+  display-name: '&aGet a spawner'
+  lore:
+    locked:
+      - '&cComplete all tasks'
+    unlocked:
+      - '&aClick to get spawner!'
+
+tasks:
+  type-bring-items:
+    1:
+      info:
+        material: COARSE_DIRT
+        name: '&7rocky ground'
+        lore:
+          - '&7Must pass'
+          - '&7 - Gravel &6x960 &7Rented: {brought-GRAVEL}'
+          - '&7 - Earth &6x960 &7Rented: {brought-DIRT}'
+      GRAVEL: 960
+      DIRT: 960
+    2:
+      info:
+        material: OBSIDIAN
+        name: '&7All types of obsidian'
+        lore:
+          - '&7Must pass'
+          - '&7 - Obsidian &6x640 &7Rented: {brought-OBSIDIAN}'
+          - '&7 - Crying Obsidian &6x192 &7Rented: {brought-CRYING_OBSIDIAN}'
+      OBSIDIAN: 640
+      CRYING_OBSIDIAN: 192
+    3:
+      info:
+        material: DIAMOND_SWORD
+        name: '&7Ready for pvp!'
+        lore:
+          - '&7Must pass'
+          - '&7 - Enchanted golden apple &6x1 &7Rented: {brought-ENCHANTED_GOLDEN_APPLE}'
+          - '&7 - coif &6x1 &7Rented: {brought-CHAINMAIL_HELMET}'
+          - '&7 - chain mail &6x1 &7Rented: {brought-CHAINMAIL_CHESTPLATE}'
+          - '&7 - Mail Leggings &6x1 &7Rented: {brought-CHAINMAIL_LEGGINGS}'
+          - '&7 - Mail boots &6x1 &7Rented: {brought-CHAINMAIL_BOOTS}'
+
+      ENCHANTED_GOLDEN_APPLE: 1
+      CHAINMAIL_HELMET: 1
+      CHAINMAIL_CHESTPLATE: 1
+      CHAINMAIL_LEGGINGS: 1
+      CHAINMAIL_BOOTS: 1
+    4:
+      info:
+        material: DIAMOND_PICKAXE
+        name: '&7Miner'
+        lore:
+          - '&7Must pass'
+          - '&7 - Diamond &6x128 &7Rented: {brought-DIAMOND}'
+          - '&7 - Gold Ingot &6x256 &7Rented: {brought-GOLD_INGOT}'
+          - '&7 - Iron ingot &6x512 &7Rented: {brought-IRON_INGOT}'
+          - '&7 - Lapis lazuli &6x1024 &7Rented: {brought-LAPIS_LAZULI}'
+      DIAMOND: 128
+      GOLD_INGOT: 256
+      IRON_INGOT: 512
+      LAPIS_LAZULI: 1024
+    5:
+      info:
+        material: ELYTRA
+        name: '&7Flyer'
+        lore:
+          - '&7Must pass'
+          - '&7 - Elitra &6x3 &7Rented: {brought-ELYTRA}'
+      ELYTRA: 3
+    6:
+      info:
+        material: DIAMOND
+        name: '&7Shower me with diamonds'
+        lore:
+          - '&7Must pass'
+          - '&7 - Diamond &6x325 &7Rented: {brought-DIAMOND}'
+      DIAMOND: 325
+    7:
+      info:
+        material: NETHERITE_SCRAP
+        name: '&7Netherite Scrap'
+        lore:
+          - '&7Must pass'
+          - '&7 - Netherite scrap &6x16 &7Rented: {brought-NETHERITE_SCRAP}'
+      NETHERITE_SCRAP: 16
+    8:
+      info:
+        material: GOLDEN_APPLE
+        name: '&7Golden Apple'
+        lore:
+          - '&7Must pass'
+          - '&7 - Golden Apple &6x128 &7Rented: {brought-GOLDEN_APPLE}'
+      GOLDEN_APPLE: 128
+    9:
+      info:
+        material: GOLDEN_CARROT
+        name: '&7golden carrot'
+        lore:
+          - '&7Must pass'
+          - '&7 - golden carrot &6x256 &7Rented: {brought-GOLDEN_CARROT}'
+      GOLDEN_CARROT: 256
+    10:
+      info:
+        material: BLAZE_ROD
+        name: '&7Blaze rod'
+        lore:
+          - '&7Must pass'
+          - '&7 - Blaze rod &6x704 &7Rented: {brought-BLAZE_ROD}'
+      BLAZE_ROD: 704
+    11:
+      info:
+        material: NETHERITE_PICKAXE
+        name: '&7Netherite Pickaxe'
+        lore:
+          - '&7Must pass'
+          - '&7 - Netherite Pickaxe &6x5 &7Rented: {brought-NETHERITE_PICKAXE}'
+      NETHERITE_PICKAXE: 5
+    12:
+      info:
+        material: GUNPOWDER
+        name: '&7Gunpowder'
+        lore:
+          - '&7Must pass'
+          - '&7 - Gunpowder &6x512 &7Rented: {brought-GUNPOWDER}'
+      GUNPOWDER: 512
+    13:
+      info:
+        material: NETHER_WART
+        name: '&7Nether wart'
+        lore:
+          - '&7Must pass'
+          - '&7 - Nether wart &6x512 &7Rented: {brought-NETHER_WART}'
+      NETHER_WART: 512
+    14:
+      info:
+        material: TOTEM_OF_UNDYING
+        name: '&7Totem of undying'
+        lore:
+          - '&7Must pass'
+          - '&7 - Totem of undyingт &6x3 &7Rented: {brought-TOTEM_OF_UNDYING}'
+      TOTEM_OF_UNDYING: 3
+    15:
+      info:
+        material: NETHERITE_INGOT
+        name: '&7Netherite ingot'
+        lore:
+          - '&7Must pass'
+          - '&7 - Netherite ingot &6x2 &7Rented: {brought-NETHERITE_INGOT}'
+      NETHERITE_INGOT: 2
+    16:
+      info:
+        material: HEART_OF_THE_SEA
+        name: '&7Heart of the sea'
+        lore:
+          - '&7Must pass'
+          - '&7 - Heart of the sea &6x8 &7Rented: {brought-HEART_OF_THE_SEA}'
+      HEART_OF_THE_SEA: 8
+    17:
+      info:
+        material: TURTLE_HELMET
+        name: '&7Turtle helmet'
+        lore:
+          - '&7Must pass'
+          - '&7 - Turtle helmet &6x8 &7Rented: {brought-TURTLE_HELMET}'
+      TURTLE_HELMET: 8
+    18:
+      info:
+        material: ENDER_EYE
+        name: '&7Ender eye'
+        lore:
+          - '&7Must pass'
+          - '&7 - Ender eye &6x128 &7Rented: {brought-ENDER_EYE}'
+      ENDER_EYE: 128
+    19:
+      info:
+        material: GLISTERING_MELON_SLICE
+        name: '&7Glistering melon slice'
+        lore:
+          - '&7Must pass'
+          - '&7 - Glistering melon slice &6x256 &7Rented: {brought-GLISTERING_MELON_SLICE}'
+      GLISTERING_MELON_SLICE: 256
+    20:
+      info:
+        material: KELP
+        name: '&7Kelp'
+        lore:
+          - '&7Must pass'
+          - '&7 - Kelp &6x8192 &7Rented: {brought-KELP}'
+      KELP: 8192
+    21:
+      info:
+        material: TNT_MINECART
+        name: '&7Minecart with TNT'
+        lore:
+          - '&7Must pass'
+          - '&7 - Minecart with TNT &6x256 &7Rented: {brought-TNT_MINECART}'
+      TNT_MINECART: 256
+    22:
+      info:
+        material: TURTLE_EGG
+        name: '&7Turtle egg'
+        lore:
+          - '&7Must pass'
+          - '&7 - Turtle egg &6x256 &7Rented: {brought-TURTLE_EGG}'
+      TURTLE_EGG: 256
+    23:
+      info:
+        material: WITHER_ROSE
+        name: '&7Wither rose'
+        lore:
+          - '&7Must pass'
+          - '&7 - Wither rose &6x256 &7Rented: {brought-WITHER_ROSE}'
+      WITHER_ROSE: 256
+    24:
+      info:
+        material: CRIMSON_FUNGUS
+        name: '&7Crimson fungus'
+        lore:
+          - '&7Must pass'
+          - '&7 - Crimson fungus &6x256 &7Rented: {brought-CRIMSON_FUNGUS}'
+      CRIMSON_FUNGUS: 256
+    25:
+      info:
+        material: DIAMOND_SWORD
+        name: '&7Diamond sword'
+        lore:
+          - '&7Must pass'
+          - '&7 - Diamond sword &6x64 &7Rented: {brought-DIAMOND_SWORD}'
+      DIAMOND_SWORD: 64
+    26:
+      info:
+        material: STONE_SHOVEL
+        name: '&7Stone shovel'
+        lore:
+          - '&7Must pass'
+          - '&7 - Stone shovel &6x320 &7Rented: {brought-STONE_SHOVEL}'
+      STONE_SHOVEL: 320
+  type-bring-the-mob:
+    1:
+      info:
+        material: WITHER_ROSE
+        name: '&7Wither and villager'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Wither and villager'
+      WITHER: 1
+      VILLAGER: 1
+    2:
+      info:
+        material: BLAZE_ROD
+        name: '&7blaze'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&73 blaze'
+      BLAZE: 3
+    3:
+      info:
+        material: GUNPOWDER
+        name: '&7slime'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&75 slime'
+      SLIME: 5
+    4:
+      info:
+        material: GUNPOWDER
+        name: '&7creeper'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&77 creeper'
+      CREEPER: 7
+    5:
+      info:
+        material: MAGMA_CREAM
+        name: '&7magma cube'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7magmacube &6x5'
+      MAGMA_CUBE: 5
+    6:
+      info:
+        material: TURTLE_EGG
+        name: '&7turtle'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&74 turtle'
+      TURTLE: 4
+    7:
+      info:
+        material: COOKED_SALMON
+        name: '&7salmon'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7salmon'
+      SALMON: 1
+    8:
+      info:
+        material: MOSSY_COBBLESTONE
+        name: '&7Silverfish'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Silverfish'
+      SILVERFISH: 1
+    9:
+      info:
+        material: LAVA_BUCKET
+        name: '&7Strider'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Strider'
+      STRIDER: 1
+    10:
+      info:
+        material: LIME_CARPET
+        name: '&7Trader llama'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Trader llama'
+      TRADER_LLAMA: 1
+    11:
+      info:
+        material: STONE_AXE
+        name: '&7Vex'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Vex'
+      VEX: 1
+    12:
+      info:
+        material: LIME_WOOL
+        name: '&7Wandering trader'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Wandering trader'
+      WANDERING_TRADER: 1
+    13:
+      info:
+        material: ROTTEN_FLESH
+        name: '&7Zombie villager'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7Must be located'
+          - '&7Zombie villager &6x1&7, villager &6x1'
+      ZOMBIE_VILLAGER: 1
+      VILLAGER: 1
+  type-place-block:
+    1:
+      info:
+        material: TNT
+        name: '&7Динамит и обсидиан'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7need to put'
+          - '&7Obsidian &6x64 &7Supplied {put-OBSIDIAN}'
+          - '&7TNT &6x128 &7Supplied {put-TNT}'
+      OBSIDIAN: 64
+      TNT: 128
+    2:
+      info:
+        material: WITHER_ROSE
+        name: '&7Wither rose'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7need to put'
+          - '&7Wither rose &6x64 &7Supplied {put-WITHER_ROSE}'
+      WITHER_ROSE: 50
+  type-break-block:
+    1:
+      info:
+        material: OBSIDIAN
+        name: '&7Unbreakable is breakable'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7need to break'
+          - '&7Obsidian &6x640 &7broken {broken-OBSIDIAN}'
+          - '&7Crying obsidian &6x64 &7broken {broken-CRYING_OBSIDIAN}'
+      OBSIDIAN: 640
+      CRYING_OBSIDIAN: 64
+    2:
+      info:
+        material: GRASS_BLOCK
+        name: '&7earth and stone'
+        lore:
+          - '&7Within 10 blocks of the spawner'
+          - '&7need to break'
+          - '&7Grass_block &6x4096 &7broken {broken-GRASS_BLOCK}'
+          - '&7Stone &6x4096 &7broken {broken-STONE}'
+      GRASS_BLOCK: 4096
+      STONE: 4096
+
+
+gui:
+  close:
+    material: BARRIER
+    slot: 53
+    name: '&cexit'
+    lore: []
+    enchant: false
+    commands:
+      - '[CLOSE]'
+  decor:
+    material: BLACK_STAINED_GLASS_PANE
+    name: ' '
+    lore: []
+    enchant: false
+    commands: []
+    slots:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 18
+      - 27
+      - 36
+      - 45
+      - 46
+      - 47
+      - 48
+      - 50
+      - 51
+      - 52
+      - 44
+      - 35
+      - 26
+      - 17

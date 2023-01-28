@@ -1,0 +1,28 @@
+#Translation by google translator
+get-by: "&aYou have successfully submitted &6{item} x{amount}"
+no-item: "&cYou don't have the required item!"
+task-completed-click: '&cYou have already completed this task!'
+task-no-open: '&cComplete the previous tasks!'
+spawner-mined: '&aSpawner has been obtained!'
+spawner-no-mined: '&cComplete all tasks!'
+spawner-inventory-name: '&aspawner'
+spawner-name: '&a{spawner-name}'
+task-completed: '&aMission accomplished!'
+task-no-completed: '&7Not performed!'
+task-mob: '&7Must be brought to the spawner {list}'
+task-place-block: '&7It is necessary to put blocks near the spawner: {list}'
+task-break-block: '&7It is necessary to break the blocks near the spawner: {list}'
+get-list-type: '{item}'
+get-list-splitter: '&7, '
+get-list-type-num: '&6{item} x{num}'
+guard-spawner: "&cYou can't get a locked spawner!"
+
+unknown-command: '&cUnknown command'
+few-arguments: '&cFew arguments'
+no-block: "&cYou don't look at the block!"
+no-spawner: '&cYou are not looking at a spawner!'
+task-not-generated: '&cTask in this spawner have not been generated yet'
+task-unlocked: '&aAll tasks in the spawner have been unlocked!'
+all-task-completed: '&aAll tasks in the spawner have been completed!'
+config-reloaded: '&aConfig files reloaded!'
+config-reloaded-force: '&aConfig files reloaded! &e with the -force flag'
