@@ -12,7 +12,7 @@ public interface ITask {
     boolean isTaskActive();
     void setTaskActive(boolean active);
     void setComplete();
-    String getTaskId();
+    String getConfigId();
     String[] getKey();
 
 }

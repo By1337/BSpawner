@@ -31,7 +31,7 @@ public class TaskBringTheMob implements ITask{
         return new String[]{"amount", "completed"};
     }
     @Override
-    public String getTaskId() {
+    public String getConfigId() {
         return TaskId;
     }
 

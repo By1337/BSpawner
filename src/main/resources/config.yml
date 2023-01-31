@@ -1,17 +1,7 @@
 
 tasks-slots: [19, 21, 23, 25]
 locked-tasks-material: BARRIER
-
-get-spawner:
-  material: GOLDEN_PICKAXE
-  slot: 49
-  enchanted: true
-  display-name: '&aДобыть спавнер'
-  lore:
-    locked:
-      - '&cВыполните все задания'
-    unlocked:
-      - '&aНажмите чтобы добыть спавнер!'
+max-spawner-views: true #Запрещяет смотреть в спавнер больше одному игроку одновременно. op обходит
 
 tasks:
   type-bring-items:
@@ -417,6 +407,24 @@ gui:
     enchant: false
     commands:
       - '[CLOSE]'
+  mine_spawner:
+    material: GOLDEN_PICKAXE
+    slot: 49
+    name: '&aДобыть спавнер'
+    lore:
+      - '&aНажмите что бы добыть спавнер'
+    enchant: false
+    click_requirement:
+      check_task: #любое название проверки
+        type: internal
+        input: AllTaskCompleted #AllTaskCompleted - true если все задания завершены
+        output: true
+        deny_commands:
+          - '[MESSAGE] &cВыполните все задания!'
+    commands:
+      - '[CLOSE]'
+      - '[DROP_SPAWNER]'
+      - '[MESSAGE] &aСпавнер добыт!'
   decor:
     material: BLACK_STAINED_GLASS_PANE
     name: ' '
@@ -440,8 +448,6 @@ gui:
       - 45
       - 46
       - 47
-      - 48
-      - 50
       - 51
       - 52
       - 44

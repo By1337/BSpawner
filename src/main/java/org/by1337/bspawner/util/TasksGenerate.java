@@ -9,46 +9,42 @@ import java.util.concurrent.ThreadLocalRandom;
 import static org.by1337.bspawner.BSpawner.instance;
 
 public class TasksGenerate {
-    public static void Generate(SpawnerTask spawnerTask) {
+
+    public static ITask getRandomTask(int slot, Location loc){
         Set<String> SetTaskTypes = instance.getConfig().getConfigurationSection("tasks").getKeys(false);
         List<String> taskTypes = new ArrayList<>(SetTaskTypes);
-        int firstSlot = instance.getConfig().getIntegerList("tasks-slots").get(0);
-        for(Integer slot : instance.getConfig().getIntegerList("tasks-slots")){
-            String taskType = taskTypes.get(ThreadLocalRandom.current().nextInt(taskTypes.size()));
-            switch (taskType){
-                case "type-bring-items": {
-                    TaskBringItems task = bringItemsGenerate(slot);
-                    if(slot == firstSlot)
-                        task.setTaskActive(true);
-                    spawnerTask.taskPut(task, "type-bring-items");
 
-                    break;
-                }
-                case "type-bring-the-mob":{
-                    TaskBringTheMob task = taskBringTheMob(spawnerTask.getSpawner().getLocation(),slot);
-                    if(slot == firstSlot)
-                        task.setTaskActive(true);
-                    spawnerTask.taskPut(task, "type-bring-the-mob");
-
-                    break;
-                }
-                case "type-place-block":{
-                    TaskPlaceBlock task = taskPlaceBlock(spawnerTask.getSpawner().getLocation(),slot);
-                    if(slot == firstSlot)
-                        task.setTaskActive(true);
-                    spawnerTask.taskPut(task, "type-place-block");
-
-                    break;
-                }
-                case "type-break-block":{
-                    TaskBreakBlock task = taskBreakBlock(spawnerTask.getSpawner().getLocation(),slot);
-                    if(slot == firstSlot)
-                        task.setTaskActive(true);
-                    spawnerTask.taskPut(task, "type-break-block");
-
-                    break;
-                }
+        String taskType = taskTypes.get(ThreadLocalRandom.current().nextInt(taskTypes.size()));
+        switch (taskType){
+            case "type-bring-items": {
+                return bringItemsGenerate(slot);
             }
+            case "type-bring-the-mob":{
+                return taskBringTheMob(loc,slot);
+            }
+            case "type-place-block":{
+                return taskPlaceBlock(loc,slot);
+            }
+            case "type-break-block":{
+                return taskBreakBlock(loc,slot);
+            }
+            default:{
+                Message.error(taskType + " unknown task type!");
+                return bringItemsGenerate(slot);
+            }
+        }
+    }
+    public static void Generate(SpawnerTask spawnerTask) {
+     //   Set<String> SetTaskTypes = instance.getConfig().getConfigurationSection("tasks").getKeys(false);
+      //  List<String> taskTypes = new ArrayList<>(SetTaskTypes);
+        int firstSlot = instance.getConfig().getIntegerList("tasks-slots").get(0);
+
+        for(Integer slot : instance.getConfig().getIntegerList("tasks-slots")){
+         //   String taskType = taskTypes.get(ThreadLocalRandom.current().nextInt(taskTypes.size()));
+            ITask task = getRandomTask(slot, spawnerTask.getSpawner().getLocation());
+            if(slot == firstSlot)
+                task.setTaskActive(true);
+            spawnerTask.taskPut(task, task.getTaskType());
         }
     }
 

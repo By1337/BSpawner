@@ -20,7 +20,9 @@ import org.by1337.bspawner.util.ItemUtil;
 import org.by1337.bspawner.util.Message;
 import org.by1337.bspawner.util.SpawnerTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import static org.by1337.bspawner.BSpawner.*;
@@ -38,7 +40,7 @@ public class InventoryListener implements Listener {
         SpawnerTask spawnerTask = null;
         if (e.getCurrentItem() != null) {
             for (Location loc : SpawnersDb.keySet()) {
-                if(SpawnersDb.get(loc).getInv().getViewers().size() == 0)
+                if (SpawnersDb.get(loc).getInv().getViewers().size() == 0)
                     continue;
                 if (SpawnersDb.get(loc).getInv().equals(e.getInventory())) {
                     spawnerTask = SpawnersDb.get(loc);
@@ -49,34 +51,28 @@ public class InventoryListener implements Listener {
         if (spawnerTask == null)
             return;
 
-        for(String key : instance.getConfig().getConfigurationSection("gui").getKeys(false)){
-            if(instance.getConfig().get("gui." + key + ".slot") != null){
-                if (e.getSlot() == instance.getConfig().getInt("gui." + key + ".slot")){
-                    if(instance.getConfig().get("gui." + key + ".commands") != null){
-                        if(instance.getConfig().getStringList("gui." + key + ".commands").contains("[CLOSE]")){
-                            e.setCancelled(true);
-                            pl.closeInventory();
-                            pl.updateInventory();
-                            return;
-                        }
-                    }
+        for (String key : instance.getConfig().getConfigurationSection("gui").getKeys(false)) {
+            if (instance.getConfig().get("gui." + key + ".commands") == null)
+                return;
+            List<Integer> slots = new ArrayList<>();
+            if (instance.getConfig().get("gui." + key + ".slot") != null)
+                slots.add(instance.getConfig().getInt("gui." + key + ".slot"));
+            if (instance.getConfig().get("gui." + key + ".slots") != null)
+                slots.addAll(instance.getConfig().getIntegerList("gui." + key + ".slots"));
+
+            if (slots.contains(e.getSlot())) {
+                if(CommandGui.clickRequirement(spawnerTask, pl, key)){
+
+                    CommandGui.run(spawnerTask, pl, "gui." + key + ".commands");
                 }
+                pl.updateInventory();
+                e.setCancelled(true);
+                return;
             }
-            if(instance.getConfig().get("gui." + key + ".slots") != null){
-                for(Integer slot : instance.getConfig().getIntegerList("gui." + key + ".slots")){
-                    if (e.getSlot() == slot){
-                        if(instance.getConfig().get("gui." + key + ".commands") != null){
-                            if(instance.getConfig().getStringList("gui." + key + ".commands").contains("[CLOSE]")){
-                                e.setCancelled(true);
-                                pl.closeInventory();
-                                pl.updateInventory();
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
+
+
         }
+
         if (instance.getConfig().getIntegerList("tasks-slots").contains(e.getSlot())) {
             ItemStack item = e.getCurrentItem();
             ItemMeta im = item.getItemMeta();
@@ -88,7 +84,7 @@ public class InventoryListener implements Listener {
 
             assert im != null;
             String type = im.getPersistentDataContainer().get(Objects.requireNonNull(NamespacedKey.fromString("type")), PersistentDataType.STRING);
-            if(im.getPersistentDataContainer().get(Objects.requireNonNull(NamespacedKey.fromString("type")), PersistentDataType.STRING) == null){
+            if (im.getPersistentDataContainer().get(Objects.requireNonNull(NamespacedKey.fromString("type")), PersistentDataType.STRING) == null) {
                 e.setCancelled(true);
                 pl.closeInventory();
                 pl.updateInventory();
@@ -98,7 +94,7 @@ public class InventoryListener implements Listener {
             switch (type) {
                 case "type-bring-items": {
                     bringItems(item, (TaskBringItems) spawnerTask.getTaskBySlot(e.getSlot()), pl, spawnerTask);
-                    InventoryGenerate.MenuGenerate(spawnerTask);
+                    InventoryGenerate.MenuGenerate(spawnerTask, pl);
                     break;
                 }
                 case "type-bring-the-mob": {
@@ -123,45 +119,48 @@ public class InventoryListener implements Listener {
                 Message.sendMsg(pl, Config.getMessage("spawner-mined"));
                 pl.closeInventory();
             } else
-                Message.sendMsg(pl,  Config.getMessage("spawner-no-mined"));
+                Message.sendMsg(pl, Config.getMessage("spawner-no-mined"));
         }
         e.setCancelled(true);
     }
-    private void bringTheMob(TaskBringTheMob taskBringTheMob, SpawnerTask spawnerTask, Player pl){
-        if(!taskBringTheMob.isTaskCompleted()){
+
+    private void bringTheMob(TaskBringTheMob taskBringTheMob, SpawnerTask spawnerTask, Player pl) {
+        if (!taskBringTheMob.isTaskCompleted()) {
             Message.sendMsg(pl, Config.getMessage("task-mob").replace(
                     "{list}", spawnerTask.getListTypeNum(taskBringTheMob, "amount")));
-        }else
-            Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
+        } else
+            Message.sendMsg(pl, Config.getMessage("task-completed-click"));
     }
 
-    private void placeBlock(TaskPlaceBlock taskPlaceBlock, SpawnerTask spawnerTask, Player pl){
-        if(!taskPlaceBlock.isTaskCompleted()){
+    private void placeBlock(TaskPlaceBlock taskPlaceBlock, SpawnerTask spawnerTask, Player pl) {
+        if (!taskPlaceBlock.isTaskCompleted()) {
             Message.sendMsg(pl, Config.getMessage("task-place-block").replace(
                     "{list}", spawnerTask.getListTypeNum(taskPlaceBlock, "amount")));
-        }else
-            Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
+        } else
+            Message.sendMsg(pl, Config.getMessage("task-completed-click"));
     }
-    private void BreakBlock(TaskBreakBlock taskBreakBlock, SpawnerTask spawnerTask, Player pl){
-        if(!taskBreakBlock.isTaskCompleted()){
+
+    private void BreakBlock(TaskBreakBlock taskBreakBlock, SpawnerTask spawnerTask, Player pl) {
+        if (!taskBreakBlock.isTaskCompleted()) {
             Message.sendMsg(pl, Config.getMessage("task-break-block").replace(
                     "{list}", spawnerTask.getListTypeNum(taskBreakBlock, "amount")));
-        }else
-            Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
+        } else
+            Message.sendMsg(pl, Config.getMessage("task-completed-click"));
     }
-    private void bringItems(ItemStack item, TaskBringItems tasks, Player pl, SpawnerTask spawnerTask){
-        if(tasks == null) return;
+
+    private void bringItems(ItemStack item, TaskBringItems tasks, Player pl, SpawnerTask spawnerTask) {
+        if (tasks == null) return;
 
         if (tasks.isTaskCompleted()) {
-            Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
+            Message.sendMsg(pl, Config.getMessage("task-completed-click"));
             return;
         }
         HashMap<String, HashMap<String, Integer>> taskMap = tasks.getTask();//mat -> bring:0, brought:0
-        for(String mat : taskMap.keySet()){
+        for (String mat : taskMap.keySet()) {
             try {
                 Material material = Material.valueOf(mat);
             } catch (IllegalArgumentException e) {
-                Message.error("Матерьяла " + mat  + " Не существует!");
+                Message.error("Матерьяла " + mat + " Не существует!");
                 continue;
             }
 
@@ -169,11 +168,11 @@ public class InventoryListener implements Listener {
             if (itemHas != 0) {
                 int bring = taskMap.get(mat).get("bring");
                 int brought = taskMap.get(mat).get("brought");
-                if(bring == brought){
+                if (bring == brought) {
                     continue;
                 }
 
-                if(bring < brought + itemHas){
+                if (bring < brought + itemHas) {
                     itemHas = taskMap.get(mat).get("bring") - taskMap.get(mat).get("brought");
                 }
 
@@ -185,15 +184,15 @@ public class InventoryListener implements Listener {
                                 "{item}", Config.getTranslation("items." + Material.valueOf(mat))).replace(
                                 "{amount}", "" + itemHas));
                 tasks.setTask(taskMap);
-        }else {
+            } else {
                 Message.sendMsg(pl, Config.getMessage("no-item"));
             }
 
         }
-        if(tasks.isTaskCompleted()){
-            Message.sendMsg(pl,  Config.getMessage("task-completed-click"));
+        if (tasks.isTaskCompleted()) {
+            Message.sendMsg(pl, Config.getMessage("task-completed-click"));
         }
-        if(tasks.taskCompletionCheck()){
+        if (tasks.taskCompletionCheck()) {
             Message.sendAllNear(Config.getMessage("task-completed"), spawnerTask.getSpawner().getLocation());
             spawnerTask.ActivateNextTask(tasks);
         }

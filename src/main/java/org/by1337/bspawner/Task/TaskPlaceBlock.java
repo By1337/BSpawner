@@ -22,7 +22,7 @@ public class TaskPlaceBlock implements ITask{
         return new String[]{"amount", "put"};
     }
     @Override
-    public String getTaskId() {
+    public String getConfigId() {
         return TaskId;
     }
 

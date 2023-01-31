@@ -9,19 +9,19 @@ public class TaskBreakBlock implements ITask{
 
     private boolean isTaskCompleted = false;
 
-    private final String TaskId;
+    private final String ConfigId;
     private boolean TaskActive = false;
     private final int slot;
 
-    public TaskBreakBlock(HashMap<String, HashMap<String, Integer>> taskMap, int slot, String TaskId) {
+    public TaskBreakBlock(HashMap<String, HashMap<String, Integer>> taskMap, int slot, String ConfigId) {
         this.taskMap = taskMap;
         this.slot = slot;
-        this.TaskId = TaskId;
+        this.ConfigId = ConfigId;
     }
 
     @Override
-    public String getTaskId() {
-        return TaskId;
+    public String getConfigId() {
+        return ConfigId;
     }
 
     @Override

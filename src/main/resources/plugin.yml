@@ -14,3 +14,6 @@ permissions:
   bs.*:
     description: All cmd
     default: op
+  bs.bypass:
+    description: guard bypass
+    default: op

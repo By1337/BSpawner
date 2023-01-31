@@ -9,7 +9,6 @@ import org.by1337.bspawner.Task.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import static org.by1337.bspawner.BSpawner.SpawnersDb;
 import static org.by1337.bspawner.BSpawner.instance;
@@ -73,7 +72,7 @@ public class Config{
             for(ITask task : SpawnersDb.get(loc).getTasks()){
                 spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskActive", task.isTaskActive());
                 spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskCompleted", task.isTaskCompleted());
-                spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskId", task.getTaskId());
+                spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + ".TaskId", task.getConfigId());
 
                 for (String key : task.getTask().keySet()) {
                     spawnerDb.set("spawners." + spawnerId + ".task." + task.getTaskType() + "." + task.getSlot() + "." + key + "." + task.getKey()[0], task.getTask().get(key).get(task.getKey()[0]));
@@ -118,5 +117,5 @@ public class Config{
         Message.logger("Loaded " + loaded + " spawners!");
 
     }
-    
+
 }

@@ -21,13 +21,14 @@ import org.by1337.bspawner.util.*;
 import java.util.Objects;
 
 import static org.by1337.bspawner.BSpawner.SpawnersDb;
+import static org.by1337.bspawner.BSpawner.instance;
 
 
 public class SpawnerListener implements Listener {
 
     @EventHandler
-    public void onPlaceEvent(BlockPlaceEvent e){
-        if(e.getBlock().getType().equals(Material.SPAWNER)){
+    public void onPlaceEvent(BlockPlaceEvent e) {
+        if (e.getBlock().getType().equals(Material.SPAWNER)) {
             BlockStateMeta bsm = (BlockStateMeta) e.getItemInHand().getItemMeta();
             assert bsm != null;
             CreatureSpawner cs = (CreatureSpawner) bsm.getBlockState();
@@ -38,35 +39,47 @@ public class SpawnerListener implements Listener {
             if ((blockState instanceof CreatureSpawner)) {
                 EntityType ct = EntityType.fromName(str);
                 if (ct != null) {
-                    ((CreatureSpawner)blockState).setSpawnedType(ct);
+                    ((CreatureSpawner) blockState).setSpawnedType(ct);
                     blockState.update(true);
                 }
             }
         }
     }
+
     @EventHandler
-    public void BreakSpawner(BlockBreakEvent e){
-        if(e.isCancelled() || !e.getBlock().getType().equals(Material.SPAWNER))
+    public void BreakSpawner(BlockBreakEvent e) {
+        if (e.isCancelled() || !e.getBlock().getType().equals(Material.SPAWNER))
             return;
         SpawnersDb.remove(e.getBlock().getLocation());
     }
 
     @EventHandler
-    public void PlayerClick(PlayerInteractEvent e){
+    public void PlayerClick(PlayerInteractEvent e) {
         Player pl = e.getPlayer();
-        if(e.getAction() == Action.RIGHT_CLICK_BLOCK){
-            if(Objects.requireNonNull(e.getClickedBlock()).getType() == Material.SPAWNER && e.getHand() == EquipmentSlot.OFF_HAND){
-                if(!WorldGuardUtil.isEmptyRegion(e.getClickedBlock().getLocation(), pl.getUniqueId())){
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (Objects.requireNonNull(e.getClickedBlock()).getType() == Material.SPAWNER && e.getHand() == EquipmentSlot.OFF_HAND) {
+                if (!pl.hasPermission("bs.bypass") && !WorldGuardUtil.isEmptyRegion(e.getClickedBlock().getLocation(), pl.getUniqueId())) {
                     Message.sendMsg(pl, Config.getMessage("guard-spawner"));
                     return;
                 }
-                if(SpawnersDb.containsKey(e.getClickedBlock().getLocation())){
-                    SpawnersDb.get(e.getClickedBlock().getLocation()).setSpawner(e.getClickedBlock());
-                    InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()));
-                    pl.openInventory(SpawnersDb.get(e.getClickedBlock().getLocation()).getInv());
-                }else {
+                if (SpawnersDb.containsKey(e.getClickedBlock().getLocation())) {
+                    if(instance.getConfig().getBoolean("max-spawner-views") && SpawnersDb.get(e.getClickedBlock().getLocation()).getInv().getViewers().size() > 0){
+                        if(pl.isOp()){
+                            pl.openInventory(SpawnersDb.get(e.getClickedBlock().getLocation()).getInv());
+                        }else
+                            Message.sendMsg(pl, Config.getMessage("max-viewer"));
+
+                    }else {
+                        SpawnersDb.get(e.getClickedBlock().getLocation()).setSpawner(e.getClickedBlock());
+                        SpawnersDb.get(e.getClickedBlock().getLocation()).setLastViewer(e.getPlayer());
+                        InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()), e.getPlayer());
+                        pl.openInventory(SpawnersDb.get(e.getClickedBlock().getLocation()).getInv());
+                    }
+
+                } else {
                     SpawnersDb.put(e.getClickedBlock().getLocation(), new SpawnerTask(e.getClickedBlock()));
-                    InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()));
+                    SpawnersDb.get(e.getClickedBlock().getLocation()).setLastViewer(e.getPlayer());
+                    InventoryGenerate.MenuGenerate(SpawnersDb.get(e.getClickedBlock().getLocation()), e.getPlayer());
                     pl.openInventory(SpawnersDb.get(e.getClickedBlock().getLocation()).getInv());
                 }
             }
@@ -75,7 +88,7 @@ public class SpawnerListener implements Listener {
     }
 
     @EventHandler
-    public void explode(EntityExplodeEvent e){
+    public void explode(EntityExplodeEvent e) {
         e.blockList().removeIf(b -> b.getType().equals(Material.SPAWNER));
     }
 

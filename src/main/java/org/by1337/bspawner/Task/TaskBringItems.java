@@ -19,7 +19,7 @@ public class TaskBringItems implements ITask {
         return new String[]{"bring", "brought"};
     }
     @Override
-    public String getTaskId() {
+    public String getConfigId() {
         return TaskId;
     }
 

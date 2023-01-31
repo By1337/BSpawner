@@ -15,7 +15,6 @@ get-list-type: '{item}'
 get-list-splitter: '&7, '
 get-list-type-num: '&6{item} x{num}'
 guard-spawner: '&cВы не можете добыть заприваченый спавнер!'
-
 unknown-command: '&cНеизвестная команда'
 few-arguments: '&cМало аргументов'
 no-block: '&cВы не смотрите на блок!'
@@ -30,3 +29,8 @@ task-error-2: 'В слоте %s в спавнере %s'
 task-error-3: 'Сломано! Поэтому оно было сгенерировано заново'
 material-error: 'Матерьяла %s не существует!'
 entity-error: 'Моба %s не существует'
+
+number-format-exception: '%s, ошибка в проверке типа javascript, в конфиге по пути %s'
+unknown-operator: '"%s" Неизвестный оператор!'
+
+max-viewer: '&cКто-то уже смотрит этот спавнер!'

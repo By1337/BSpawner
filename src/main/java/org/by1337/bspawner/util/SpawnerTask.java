@@ -3,6 +3,7 @@ package org.by1337.bspawner.util;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
@@ -29,6 +30,7 @@ public class SpawnerTask {
     private boolean allTaskComplete = false;
     private boolean isDropped = false;
     private Block Spawner;
+    private Player lastViewer = null;
     private final String spawnerId;
     private Inventory inv = Bukkit.createInventory(null, 54, Config.getMessage("spawner-inventory-name"));
 
@@ -47,27 +49,21 @@ public class SpawnerTask {
         return inv;
     }
 
-    public void setInv(Inventory inv) {
-        this.inv = inv;
-    }
 
     public Block getSpawner() {
         return Spawner;
     }
 
-
-    public boolean isAllTasksCompleted() {
-        return allTaskComplete;
-    }
-
-    public void ReplaceTask(ITask task, ITask newTask){
+    public void ReplaceTask(ITask oldTask, ITask newTask) {
         for (int x = 0; x < Tasks.size(); x++) {
-            if(Tasks.get(x).equals(task)){
+            if (Tasks.get(x).equals(oldTask)) {
                 Tasks.set(x, newTask);
+                InventoryGenerate.MenuGenerate(this, lastViewer);
                 break;
             }
         }
     }
+
     public boolean CheckAllTaskCompleted() {
         boolean isChecked = false;
         for (ITask key : Tasks) {
@@ -80,6 +76,39 @@ public class SpawnerTask {
         }
         allTaskComplete = isChecked;
         return isChecked;
+    }
+
+    public ITask getLastActiveTask() {
+        ITask buff = null;
+        for (ITask task : getTasks()) {
+            if (task.isTaskActive()) {
+                if (buff != null) {//необходима на тот случай если задания будут находиться не по порядку
+                    if (task.getSlot() > buff.getSlot())
+                        buff = task;
+                } else
+                    buff = task;
+            }
+        }
+        return buff;
+    }
+
+    public void skipTask() {
+        ITask task = getLastActiveTask();
+        task.setComplete();
+        ActivateNextTask(task);
+        InventoryGenerate.MenuGenerate(this, lastViewer);
+        CheckAllTaskCompleted();
+    }
+
+    public void ChangeTask() {
+        ITask oldTask = getLastActiveTask();
+        ITask newTask = TasksGenerate.getRandomTask(oldTask.getSlot(), getSpawner().getLocation());
+        while (Objects.equals(oldTask.getTaskType(), newTask.getTaskType()) && Objects.equals(oldTask.getConfigId(), newTask.getConfigId())){
+            newTask = TasksGenerate.getRandomTask(oldTask.getSlot(), getSpawner().getLocation());
+        }
+        newTask.setTaskActive(true);
+        ReplaceTask(oldTask, newTask);
+        InventoryGenerate.MenuGenerate(this, lastViewer);
     }
 
     public ITask getTaskBySlot(int slot) {
@@ -103,10 +132,9 @@ public class SpawnerTask {
     }
 
     public void MineSpawner() {
-
-        Sphere.totem(getSpawner().getLocation().clone(),2, 20);
+        inv.clear();
+        Sphere.totem(getSpawner().getLocation().clone(), 2, 20);
         dropSpawner();
-
     }
 
     public void dropSpawner() {
@@ -124,7 +152,7 @@ public class SpawnerTask {
 
 
         String name = getMessage("spawner-name").replace("{spawner-name}", getTranslation("spawners-name." + cs.getSpawnedType()));
-        item = InventoryGenerate.ItemSetName(item, "&a" + name);
+        item = InventoryGenerate.ItemSetName(item, "&a" + name, lastViewer);
 
         Spawner.setType(Material.AIR);
         Objects.requireNonNull(Spawner.getLocation().getWorld()).dropItem(Spawner.getLocation(), item);
@@ -172,4 +200,11 @@ public class SpawnerTask {
         return allTaskComplete;
     }
 
+    public Player getLastViewer() {
+        return lastViewer;
+    }
+
+    public void setLastViewer(Player lastViewer) {
+        this.lastViewer = lastViewer;
+    }
 }
