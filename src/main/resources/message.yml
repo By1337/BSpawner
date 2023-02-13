@@ -32,5 +32,4 @@ entity-error: 'Моба %s не существует'
 
 number-format-exception: '%s, ошибка в проверке типа javascript, в конфиге по пути %s'
 unknown-operator: '"%s" Неизвестный оператор!'
-
 max-viewer: '&cКто-то уже смотрит этот спавнер!'

@@ -48,8 +48,10 @@ public class SpawnerListener implements Listener {
 
     @EventHandler
     public void BreakSpawner(BlockBreakEvent e) {
-        if (e.isCancelled() || !e.getBlock().getType().equals(Material.SPAWNER))
+        if (e.isCancelled() || !e.getBlock().getType().equals(Material.SPAWNER) || !SpawnersDb.containsKey(e.getBlock().getLocation()))
             return;
+        if(SpawnersDb.get(e.getBlock().getLocation()).getInv() != null)
+            SpawnersDb.get(e.getBlock().getLocation()).getInv().clear();
         SpawnersDb.remove(e.getBlock().getLocation());
     }
 
