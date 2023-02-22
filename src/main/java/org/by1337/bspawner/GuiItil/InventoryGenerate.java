@@ -55,7 +55,8 @@ public class InventoryGenerate {
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
-            assert itemMeta != null;
+            if (instance.getConfig().get("nbt") != null)
+                itemMeta.setCustomModelData(Integer.parseInt(instance.getConfig().getString("nbt").replace("{CustomModelData:", "").replace("}", "")));
             itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
@@ -84,6 +85,12 @@ public class InventoryGenerate {
             int amount = taskMap.get(mat).get("amount");
             int broken = taskMap.get(mat).get("broken");
 
+            if (instance.getConfig().get("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt") != null){
+                ItemMeta im = item.getItemMeta();
+                im.setCustomModelData(Integer.parseInt(instance.getConfig().getString("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt").replace("{CustomModelData:", "").replace("}", "")));
+                item.setItemMeta(im);
+            }
+
             String name = instance.getConfig().getString("tasks.type-break-block." + task.getConfigId() + ".info.name");
             assert name != null;
             name = name.replace("{item-name}", Config.getTranslation("items." + item.getType()));
@@ -110,7 +117,8 @@ public class InventoryGenerate {
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
-            assert itemMeta != null;
+            if (instance.getConfig().get("nbt") != null)
+                itemMeta.setCustomModelData(Integer.parseInt(instance.getConfig().getString("nbt").replace("{CustomModelData:", "").replace("}", "")));
             itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
@@ -140,6 +148,12 @@ public class InventoryGenerate {
             int amount = taskMap.get(mat).get("amount");
             int placed = taskMap.get(mat).get("put");
 
+            if (instance.getConfig().get("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt") != null){
+                ItemMeta im = item.getItemMeta();
+                im.setCustomModelData(Integer.parseInt(instance.getConfig().getString("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt").replace("{CustomModelData:", "").replace("}", "")));
+                item.setItemMeta(im);
+            }
+
             String name = instance.getConfig().getString("tasks.type-place-block." + task.getConfigId() + ".info.name");
             assert name != null;
             name = name.replace("{item-name}", Config.getTranslation("items." + item.getType()));
@@ -165,7 +179,8 @@ public class InventoryGenerate {
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
-            assert itemMeta != null;
+            if (instance.getConfig().get("nbt") != null)
+                itemMeta.setCustomModelData(Integer.parseInt(instance.getConfig().getString("nbt").replace("{CustomModelData:", "").replace("}", "")));
             itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
@@ -191,6 +206,12 @@ public class InventoryGenerate {
                 Message.error(String.format(Config.getMessage("material-error"), instance.getConfig().getString("tasks.type-place-block." + task.getConfigId() + ".info.material")));
                 continue;
             }
+            if (instance.getConfig().get("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt") != null){
+                ItemMeta im = item.getItemMeta();
+                im.setCustomModelData(Integer.parseInt(instance.getConfig().getString("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt").replace("{CustomModelData:", "").replace("}", "")));
+                item.setItemMeta(im);
+            }
+
             int amount = taskMap.get(mob).get("amount");
             int completed = taskMap.get(mob).get("completed");
             String name = instance.getConfig().getString("tasks.type-bring-the-mob." + task.getConfigId() + ".info.name");
@@ -216,7 +237,9 @@ public class InventoryGenerate {
         if (!task.isTaskActive()) {
             ItemStack itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
             ItemMeta itemMeta = itemStack.getItemMeta();
-            assert itemMeta != null;
+            if (instance.getConfig().get("nbt") != null)
+                itemMeta.setCustomModelData(Integer.parseInt(instance.getConfig().getString("nbt").replace("{CustomModelData:", "").replace("}", "")));
+
             itemMeta.setDisplayName(Config.getMessage("task-no-open"));
             itemStack.setItemMeta(itemMeta);
             return itemStack;
@@ -245,6 +268,11 @@ public class InventoryGenerate {
                 continue;
             }
 
+            if (instance.getConfig().get("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt") != null){
+                ItemMeta im = item.getItemMeta();
+                im.setCustomModelData(Integer.parseInt(instance.getConfig().getString("tasks." + task.getTaskType() + "." + task.getConfigId() + ".info.nbt").replace("{CustomModelData:", "").replace("}", "")));
+                item.setItemMeta(im);
+            }
 
             String name = instance.getConfig().getString("tasks.type-bring-items." + task.getConfigId() + ".info.name");
 
@@ -276,6 +304,11 @@ public class InventoryGenerate {
             } catch (IllegalArgumentException e) {
                 Message.error(String.format(Config.getMessage("material-error"), key));
                 continue;
+            }
+            if (instance.getConfig().get("gui." + key + ".nbt") != null){
+                ItemMeta im = item.getItemMeta();
+                im.setCustomModelData(Integer.parseInt(instance.getConfig().getString("gui." + key + ".nbt").replace("{CustomModelData:", "").replace("}", "")));
+                item.setItemMeta(im);
             }
             if (instance.getConfig().get("gui." + key + ".name") != null)
                 item = ItemSetName(item, instance.getConfig().getString("gui." + key + ".name"), pl);

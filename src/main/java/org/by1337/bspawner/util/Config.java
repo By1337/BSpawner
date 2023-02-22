@@ -1,5 +1,6 @@
 package org.by1337.bspawner.util;
 
+import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,9 +10,9 @@ import org.by1337.bspawner.Task.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.Callable;
 
-import static org.by1337.bspawner.BSpawner.SpawnersDb;
-import static org.by1337.bspawner.BSpawner.instance;
+import static org.by1337.bspawner.BSpawner.*;
 
 public class Config{
      static FileConfiguration translations;

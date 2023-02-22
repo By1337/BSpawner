@@ -1,8 +1,9 @@
 
 tasks-slots: [19, 21, 23, 25]
 locked-tasks-material: BARRIER
-max-spawner-views: true #Запрещяет смотреть в спавнер больше одному игроку одновременно. op обходит
+max-spawner-views: true #Запрещает смотреть в спавнер больше одному игроку одновременно. op обходит
 
+use-bstats: true #сбор анонимной статистики
 tasks:
   type-bring-items:
     1:

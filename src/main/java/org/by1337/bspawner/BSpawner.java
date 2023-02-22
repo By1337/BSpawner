@@ -1,5 +1,6 @@
 package org.by1337.bspawner;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +29,7 @@ public final class BSpawner extends JavaPlugin implements Runnable {
     public static BSpawner instance;
     public static HashMap<Location, SpawnerTask> SpawnersDb = new HashMap<>();
     int autoSaveDelay = 30 * 60 * 5;
+    public static Metrics metrics;
 
     @Override
     public void onEnable() {
@@ -39,6 +41,8 @@ public final class BSpawner extends JavaPlugin implements Runnable {
 
             this.saveDefaultConfig();
         }
+        if(instance.getConfig().getBoolean("use-bstats"))
+            metrics = new Metrics(this, 17724);
         LoadYamlConfiguration();
         try {
             LoadSpawners();
