@@ -1,6 +1,9 @@
 #Translation by google translator
 tasks-slots: [19, 21, 23, 25]
 locked-tasks-material: BARRIER
+max-spawner-views: true #Prevents more than one player from looking at the spawner at the same time. op bypasses
+use-bstats: true #collection of anonymous statistics
+distance: 10 #Event check distance in blocks. For example, finding mobs near the spawner
 
 get-spawner:
   material: GOLDEN_PICKAXE
