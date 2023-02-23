@@ -9,6 +9,9 @@ import org.by1337.bspawner.util.Message;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static org.by1337.bspawner.BSpawner.instance;
+
 public class TaskBringTheMob implements ITask{
 
 
@@ -102,7 +105,7 @@ public class TaskBringTheMob implements ITask{
         List<Entity> list = new ArrayList<>();
         if(locSpawner == null || locSpawner.getWorld() == null)
             return list;
-        for(Entity entity : locSpawner.getWorld().getNearbyEntities(locSpawner, 10, 10, 10)){
+        for(Entity entity : locSpawner.getWorld().getNearbyEntities(locSpawner, instance.getConfig().getInt("distance"), instance.getConfig().getInt("distance"), instance.getConfig().getInt("distance"))){
             if(entity.getType().equals(mob)){
                 list.add(entity);
             }

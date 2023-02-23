@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.by1337.bspawner.GuiItil.BaseHeadHook;
 import org.by1337.bspawner.GuiItil.InventoryGenerate;
 import org.by1337.bspawner.Task.TaskBreakBlock;
 import org.by1337.bspawner.Task.TaskBringItems;
@@ -29,7 +30,6 @@ import static org.by1337.bspawner.BSpawner.*;
 
 public class InventoryListener implements Listener {
 
-
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {
         Player pl;
@@ -38,7 +38,6 @@ public class InventoryListener implements Listener {
         else
             return;
         SpawnerTask spawnerTask = null;
-        if (e.getCurrentItem() != null) {
             for (Location loc : SpawnersDb.keySet()) {
                 if (SpawnersDb.get(loc).getInv().getViewers().size() == 0)
                     continue;
@@ -47,10 +46,12 @@ public class InventoryListener implements Listener {
                     break;
                 }
             }
-        }
         if (spawnerTask == null)
             return;
-
+        if (e.getCurrentItem() != null){
+            e.setCancelled(true);
+            return;
+        }
         for (String key : instance.getConfig().getConfigurationSection("gui").getKeys(false)) {
             if (instance.getConfig().get("gui." + key + ".commands") == null)
                 return;
@@ -61,7 +62,7 @@ public class InventoryListener implements Listener {
                 slots.addAll(instance.getConfig().getIntegerList("gui." + key + ".slots"));
 
             if (slots.contains(e.getSlot())) {
-                if(CommandGui.clickRequirement(spawnerTask, pl, key)){
+                if (CommandGui.clickRequirement(spawnerTask, pl, key)) {
 
                     CommandGui.run(spawnerTask, pl, "gui." + key + ".commands");
                 }
@@ -76,7 +77,10 @@ public class InventoryListener implements Listener {
         if (instance.getConfig().getIntegerList("tasks-slots").contains(e.getSlot())) {
             ItemStack item = e.getCurrentItem();
             ItemMeta im = item.getItemMeta();
-            if (String.valueOf(item.getType()).equalsIgnoreCase(instance.getConfig().getString("locked-tasks-material"))) {
+
+            if (Objects.equals(item.getItemMeta().getLore() == null ? new ArrayList<String>() : item.getItemMeta().getLore(),
+                    getLockedTaskItem().getItemMeta().getLore() == null ? new ArrayList<String>() : getLockedTaskItem().getItemMeta().getLore()
+            )) {
                 Message.sendMsg(pl, Config.getMessage("task-no-open"));
                 e.setCancelled(true);
                 return;
@@ -196,6 +200,24 @@ public class InventoryListener implements Listener {
             Message.sendAllNear(Config.getMessage("task-completed"), spawnerTask.getSpawner().getLocation());
             spawnerTask.ActivateNextTask(tasks);
         }
+    }
+
+    public static ItemStack getLockedTaskItem() {
+        ItemStack itemStack;
+        if (instance.getConfig().getString("locked-tasks-material").contains("basehead-")) {
+            itemStack = BaseHeadHook.getItem(instance.getConfig().getString("locked-tasks-material"));
+        } else {
+            itemStack = new ItemStack(Material.valueOf(instance.getConfig().getString("locked-tasks-material")));
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            if (instance.getConfig().get("nbt") != null) {
+                itemMeta.setCustomModelData(Integer.parseInt(instance.getConfig().getString("nbt").replace("{CustomModelData:", "").replace("}", "")));
+                itemStack.setItemMeta(itemMeta);
+            }
+        }
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(Config.getMessage("task-no-open"));
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
     }
 
 }

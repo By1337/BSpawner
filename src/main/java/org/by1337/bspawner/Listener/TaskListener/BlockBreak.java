@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import static org.by1337.bspawner.BSpawner.SpawnersDb;
+import static org.by1337.bspawner.BSpawner.instance;
 
 public class BlockBreak implements Listener {
 
@@ -34,7 +35,7 @@ public class BlockBreak implements Listener {
                     if(!Objects.equals(spawnerTask.getSpawner().getLocation().getWorld(), e.getBlock().getLocation().getWorld()))
                         continue;
                     double dist = e.getBlock().getLocation().distance(spawnerTask.getSpawner().getLocation());
-                    if(dist > 10)
+                    if(dist > instance.getConfig().getInt("distance"))
                         continue;
                     HashMap<String, HashMap<String, Integer>> taskMap = task.getTask();
                     if(taskMap.containsKey(String.valueOf(e.getBlock().getType()))){
