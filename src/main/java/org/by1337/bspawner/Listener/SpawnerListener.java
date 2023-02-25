@@ -58,7 +58,7 @@ public class SpawnerListener implements Listener {
     @EventHandler
     public void PlayerClick(PlayerInteractEvent e) {
         Player pl = e.getPlayer();
-        if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {// || instance.getConfig().getBoolean("geyser") && e.getAction() == Action.LEFT_CLICK_BLOCK && String.valueOf(e.getPlayer().getUniqueId()).contains("00000000-0000-0000")
             if (Objects.requireNonNull(e.getClickedBlock()).getType() == Material.SPAWNER && e.getHand() == EquipmentSlot.OFF_HAND) {
                 if (!pl.hasPermission("bs.bypass") && !WorldGuardUtil.isEmptyRegion(e.getClickedBlock().getLocation(), pl.getUniqueId())) {
                     Message.sendMsg(pl, Config.getMessage("guard-spawner"));

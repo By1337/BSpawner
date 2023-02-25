@@ -4,6 +4,7 @@ locked-tasks-material: BARRIER
 max-spawner-views: true #Запрещает смотреть в спавнер больше чем одному игроку одновременно. op обходит
 use-bstats: true #сбор анонимной статистики
 distance: 10 #Дистанция проверки события в блоках. Например, нахождения мобов возле спавнера
+
 tasks:
   type-bring-items:
     1:

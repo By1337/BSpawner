@@ -48,7 +48,7 @@ public class InventoryListener implements Listener {
             }
         if (spawnerTask == null)
             return;
-        if (e.getCurrentItem() != null){
+        if (e.getCurrentItem() == null){
             e.setCancelled(true);
             return;
         }
