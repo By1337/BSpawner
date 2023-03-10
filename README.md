@@ -27,3 +27,5 @@ Thanks to this plugin, your server players will be able to get a spawner by comp
 `/bs drop` - drop spawner
 
 [translations](https://github.com/By1337/BSpawner/wiki/translation)
+
+https://spigotmc.ru/resources/bspawner.1434/
