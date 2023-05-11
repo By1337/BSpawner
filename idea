@@ -1,0 +1,61 @@
+нужно фиксить
+при клике по закрытому заданию закрывается меню fix
+
+    nbt: '{CustomModelData:1234567}'
+
+    geyser: false #игроки с телефона смогут открывать меню
+
+задание с мобами
+если два одинаковых задания идут друг за другом то выполняются сразу 2
+
+
+  skip:
+    material: LAVA_BUCKET
+    slot: 48
+    name: '&fПропустить задание'
+    lore:
+      - '&fСтоит 150 поинтов'
+      - '&fБаланс &a%playerpoints_points%'
+    enchant: false
+    click_requirement:
+      check_task: #любое название проверки
+        type: internal
+        input: AllTaskCompleted #AllTaskCompleted - true если все задания завершены
+        output: false
+        deny_commands: #Выполнится если AllTaskCompleted = true
+          - '[MESSAGE] &cВсе задания выполнены'
+      check_balance: #любое название проверки
+        type: javascript #сравнение чисел
+        input: '%playerpoints_points% >= 150'
+        output: true
+        deny_commands: #Выполнится если %playerpoints_points% < 150
+          - '[MESSAGE] &cУ Вас не достаточно денег!'
+    commands:
+      - '[CONSOLE] points take %player_name% 150'
+      - '[SKIP]'
+      - '[MESSAGE] &aЗадание было пропущено!'
+  change:
+    material: COMPOSTER
+    slot: 50
+    name: '&fСменить задание'
+    lore:
+      - '&fСтоит 50 поинтов'
+      - '&fБаланс &a%playerpoints_points%'
+    enchant: false
+    click_requirement:
+      check_task: #любое название проверки
+        type: internal
+        input: AllTaskCompleted #AllTaskCompleted - true если все задания завершены
+        output: false
+        deny_commands: #Выполнится если AllTaskCompleted = true
+          - '[MESSAGE] &cВсе задания выполнены'
+      check_balance: #любое название проверки
+        type: javascript #сравнение чисел
+        input: '%playerpoints_points% >= 50'
+        output: true
+        deny_commands: #Выполнится если %playerpoints_points% < 50
+          - '[MESSAGE] &cУ Вас не достаточно денег!'
+    commands:
+      - '[CONSOLE] points take %player_name% 50'
+      - '[CHANGE]'
+      - '[MESSAGE] &aЗадание было изменено!'

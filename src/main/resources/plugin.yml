@@ -1,0 +1,19 @@
+name: BSpawner
+version: '${project.version}'
+main: org.by1337.bspawner.BSpawner
+api-version: 1.16
+authors: [ By1337 ]
+description: Get a spawner by completing tasks
+softdepend: [PlaceholderAPI, WorldGuard, WorldEdit]
+commands:
+  bspawner:
+    description: Standart Command
+    aliases: [spawner, bs]
+    usage: Usage /bspawner help
+permissions:
+  bs.*:
+    description: All cmd
+    default: op
+  bs.bypass:
+    description: guard bypass
+    default: op
